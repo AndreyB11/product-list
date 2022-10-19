@@ -8,8 +8,8 @@ export const Header = () => {
       <Typography variant="h3" component="h1" color="white">
         Product Library
       </Typography>
-      <IconButton>
-        <AddIcon sx={{ color: "white" }} />
+      <IconButton size="large">
+        <AddIcon color="primary" />
       </IconButton>
     </Box>
   );
