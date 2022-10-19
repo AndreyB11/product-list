@@ -1,6 +1,7 @@
 import { Box, IconButton, Typography } from "@mui/material";
 import { headerStyles } from "./headerStyles";
 import AddIcon from "@mui/icons-material/Add";
+import { globalStyles } from "shared/theme";
 
 export const Header = () => {
   return (
@@ -9,7 +10,7 @@ export const Header = () => {
         Product List
       </Typography>
       <IconButton size="large">
-        <AddIcon color="primary" />
+        <AddIcon sx={globalStyles.whiteColor} />
       </IconButton>
     </Box>
   );

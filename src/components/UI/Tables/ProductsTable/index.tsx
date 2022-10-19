@@ -3,6 +3,7 @@ import { IProduct } from "shared/models";
 import { GenericTable, IGenericTableColumn } from "../GenericTable";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { useModal } from "shared/context/ModalContext";
 
 interface IProps {
   products: IProduct[];
@@ -18,6 +19,8 @@ const columns: IGenericTableColumn[] = [
 ];
 
 export const ProductsTable = ({ products }: IProps) => {
+  const { openModal } = useModal();
+
   return (
     <GenericTable
       columns={columns}
@@ -36,7 +39,11 @@ export const ProductsTable = ({ products }: IProps) => {
             <IconButton>
               <EditIcon color="primary" />
             </IconButton>
-            <IconButton>
+            <IconButton
+              onClick={() => {
+                openModal("deleteModal", { visible: true });
+              }}
+            >
               <DeleteIcon color="error" />
             </IconButton>
           </TableCell>
