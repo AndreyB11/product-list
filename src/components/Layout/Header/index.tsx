@@ -1,5 +1,6 @@
-import { Box, Typography } from "@mui/material";
+import { Box, IconButton, Typography } from "@mui/material";
 import { headerStyles } from "./headerStyles";
+import AddIcon from "@mui/icons-material/Add";
 
 export const Header = () => {
   return (
@@ -7,6 +8,9 @@ export const Header = () => {
       <Typography variant="h3" component="h1" color="white">
         Product Library
       </Typography>
+      <IconButton>
+        <AddIcon sx={{ color: "white" }} />
+      </IconButton>
     </Box>
   );
 };

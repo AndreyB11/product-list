@@ -7,7 +7,7 @@ const HomePage = () => {
   return (
     <PageLayout>
       <Header />
-      <Container sx={globalStyles}>Home Page</Container>
+      <Container sx={globalStyles.container}>Home Page</Container>
     </PageLayout>
   );
 };
