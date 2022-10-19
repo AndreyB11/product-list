@@ -6,7 +6,7 @@ export const Header = () => {
   return (
     <Box sx={headerStyles.header}>
       <Typography variant="h3" component="h1" color="white">
-        Product Library
+        Product List
       </Typography>
       <IconButton size="large">
         <AddIcon color="primary" />
