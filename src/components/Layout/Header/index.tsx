@@ -9,7 +9,7 @@ export const Header = () => {
         Product List
       </Typography>
       <IconButton size="large">
-        <AddIcon color="primary" />
+        <AddIcon />
       </IconButton>
     </Box>
   );
