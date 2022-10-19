@@ -1,6 +1,5 @@
 import { HomePage } from "pages";
-import { FC } from "react";
 
-export const App: FC = () => {
+export const App = () => {
   return <HomePage />;
 };
