@@ -1,20 +1,11 @@
-import React, { lazy } from "react";
+import { lazy, LazyExoticComponent } from "react";
+import { AppRoutes, RoutePath } from "shared/constants";
 
 const HomePage = lazy(() => import("pages/HomePage"));
 
-export enum AppRoutes {
-  Home = "Home",
-  NotFound = "NotFound",
-}
-
-export const RoutePath: Record<AppRoutes, string> = {
-  [AppRoutes.Home]: "/",
-  [AppRoutes.NotFound]: "*",
-};
-
 export interface IRoute {
   path: string;
-  Component: React.LazyExoticComponent<() => JSX.Element>;
+  Component: LazyExoticComponent<() => JSX.Element>;
 }
 
 export const RouteConfig: Record<AppRoutes, IRoute> = {

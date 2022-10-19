@@ -9,7 +9,7 @@ export const Header = () => {
         Product Library
       </Typography>
       <IconButton>
-        <AddIcon sx={{ color: "white" }} />
+        <AddIcon color="primary" />
       </IconButton>
     </Box>
   );
