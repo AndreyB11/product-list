@@ -1,18 +1,11 @@
 import React from "react";
-import { styled, Typography } from "@mui/material";
-import { TypographyProps } from "@mui/system";
-
-const StyledError = styled(Typography)<TypographyProps>(({ theme }) => ({
-  color: theme.palette.error.main,
-  whiteSpace: "pre-line",
-  fontSize: "13px",
-  marginTop: "5px",
-}));
+import { Typography } from "@mui/material";
+import { fieldErrorStyles } from "./fieldErrorStyles";
 
 interface IProps {
   children: React.ReactNode;
 }
 
 export const FieldError = ({ children }: IProps) => {
-  return <StyledError>{children}</StyledError>;
+  return <Typography sx={fieldErrorStyles.fieldError}>{children}</Typography>;
 };

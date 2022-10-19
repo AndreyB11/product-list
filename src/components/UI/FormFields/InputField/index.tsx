@@ -7,20 +7,14 @@ interface IProps {
 }
 
 export const InputField = ({ defaultProps }: IProps) => {
-  const [field, meta] = useField(defaultProps?.name!!);
+  const [field, meta] = useField(defaultProps?.name!);
   const { touched, error } = meta;
   const isError = Boolean(touched && error);
 
-  const renderHelperText = () => {
-    if (isError) {
-      return error;
-    }
-  };
-
   return (
     <>
-      <TextField error={isError} type={"text"} {...field} {...defaultProps} />
-      <FieldError>{renderHelperText()}&nbsp;</FieldError>
+      <TextField error={isError} type="text" {...field} {...defaultProps} />
+      <FieldError>{isError ? error : ""}&nbsp;</FieldError>
     </>
   );
 };
