@@ -1,10 +1,10 @@
 import { Box, CssBaseline, Container } from "@mui/material";
-import { ReactNode } from "react";
+import React from "react";
 import { pageLayoutStyles } from "./pageLayoutStyles";
 
 interface IProps {
-  header: ReactNode;
-  children: ReactNode;
+  header: React.ReactNode;
+  children: React.ReactNode;
 }
 
 export const PageLayout = ({ children, header }: IProps) => {
