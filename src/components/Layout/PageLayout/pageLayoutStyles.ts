@@ -6,4 +6,7 @@ export const pageLayoutStyles: Style = {
     display: "flex",
     flexDirection: "column",
   },
+  container: {
+    flex: 1,
+  },
 };

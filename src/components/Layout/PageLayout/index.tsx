@@ -1,16 +1,18 @@
-import { Box, CssBaseline } from "@mui/material";
-import { FC, ReactNode } from "react";
+import { Box, CssBaseline, Container } from "@mui/material";
+import { ReactNode } from "react";
 import { pageLayoutStyles } from "./pageLayoutStyles";
 
-interface PageLayoutProps {
+interface IProps {
+  header: ReactNode;
   children: ReactNode;
 }
 
-export const PageLayout: FC<PageLayoutProps> = ({ children }) => {
+export const PageLayout = ({ children, header }: IProps) => {
   return (
     <Box sx={pageLayoutStyles.containerWrapper}>
+      {header}
       <CssBaseline />
-      {children}
+      <Container sx={pageLayoutStyles.container}>{children}</Container>
     </Box>
   );
 };
