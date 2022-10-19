@@ -13,8 +13,6 @@ interface IProps {
   children: React.ReactNode;
 }
 
-const FieldError = ({ children }: IProps) => {
+export const FieldError = ({ children }: IProps) => {
   return <StyledError>{children}</StyledError>;
 };
-
-export default FieldError;

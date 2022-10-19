@@ -1,12 +1,12 @@
 import { TextField, TextFieldProps } from "@mui/material";
 import { useField } from "formik";
-import FieldError from "../FieldError";
+import { FieldError } from "../FieldError";
 
 interface IProps {
   defaultProps: TextFieldProps;
 }
 
-const InputField = ({ defaultProps }: IProps) => {
+export const InputField = ({ defaultProps }: IProps) => {
   const [field, meta] = useField(defaultProps?.name!!);
   const { touched, error } = meta;
   const isError = Boolean(touched && error);
@@ -24,5 +24,3 @@ const InputField = ({ defaultProps }: IProps) => {
     </>
   );
 };
-
-export default InputField;
