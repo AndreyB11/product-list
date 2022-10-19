@@ -1,6 +1,6 @@
-import { IStyles } from "shared/interfaces";
+import { Style } from "shared/types/style";
 
-export const pageLayoutStyles: IStyles = {
+export const pageLayoutStyles: Style = {
   containerWrapper: {
     height: "100vh",
     display: "flex",

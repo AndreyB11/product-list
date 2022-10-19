@@ -1,6 +1,6 @@
-import { IStyles } from "shared/interfaces";
+import { Style } from "shared/types/style";
 
-export const headerStyles: IStyles = {
+export const headerStyles: Style = {
   header: {
     textAlign: "center",
     py: 2,
