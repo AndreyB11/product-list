@@ -1,4 +1,4 @@
-import { lazy, LazyExoticComponent } from "react";
+import React, { lazy } from "react";
 
 const HomePage = lazy(() => import("pages/HomePage"));
 
@@ -14,7 +14,7 @@ export const RoutePath: Record<AppRoutes, string> = {
 
 export interface IRoute {
   path: string;
-  Component: LazyExoticComponent<() => JSX.Element>;
+  Component: React.LazyExoticComponent<() => JSX.Element>;
 }
 
 export const RouteConfig: Record<AppRoutes, IRoute> = {
