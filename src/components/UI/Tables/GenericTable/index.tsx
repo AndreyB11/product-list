@@ -9,8 +9,14 @@ import {
   TableBody,
 } from "@mui/material";
 
+export interface IGenericTableColumn {
+  key: string;
+  name: string;
+  width?: string;
+}
+
 interface IProps<T> {
-  columns: string[];
+  columns: IGenericTableColumn[];
   renderRow: (item: T) => React.ReactNode;
   keyExtractor: (item: T) => string;
   data: T[];
@@ -27,8 +33,10 @@ export const GenericTable = <T extends unknown>({
       <Table>
         <TableHead>
           <TableRow>
-            {columns.map((col) => (
-              <TableCell>{col}</TableCell>
+            {columns.map(({ key, name, width }) => (
+              <TableCell key={key} sx={width ? { width } : {}}>
+                {name}
+              </TableCell>
             ))}
           </TableRow>
         </TableHead>
