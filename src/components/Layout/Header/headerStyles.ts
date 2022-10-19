@@ -1,4 +1,4 @@
-import { Style } from "shared/interfaces";
+import { Style } from "shared/types/style";
 
 export const headerStyles: Style = {
   header: {
