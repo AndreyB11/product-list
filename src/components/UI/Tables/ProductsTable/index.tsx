@@ -3,7 +3,7 @@ import { IProduct } from "shared/models";
 import { GenericTable, IGenericTableColumn } from "../GenericTable";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { useModal } from "shared/context/ModalContext";
+import { useModal } from "components/UI/Modals/GenericModal/GenericModalProvider";
 
 interface IProps {
   products: IProduct[];

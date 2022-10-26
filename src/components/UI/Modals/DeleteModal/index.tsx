@@ -1,7 +1,7 @@
 import { Button, Grid, IconButton, Typography } from "@mui/material";
 import { GenericModal } from "../GenericModal";
 import CloseIcon from "@mui/icons-material/Close";
-import { deleteModalStyles } from "./deleteModalProps";
+import { deleteModalStyles } from "./deleteModalStyles";
 import { globalStyles } from "shared/theme";
 
 interface IProps {
