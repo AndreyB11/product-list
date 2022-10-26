@@ -1,16 +1,14 @@
 import { TextField, TextFieldProps } from "@mui/material";
-import { useField } from "formik";
 import { FieldError } from "../FieldError";
 
 interface IProps {
   defaultProps: TextFieldProps;
+  field: any;
+  isError: boolean;
+  error: string;
 }
 
-export const InputField = ({ defaultProps }: IProps) => {
-  const [field, meta] = useField(defaultProps?.name!);
-  const { touched, error } = meta;
-  const isError = Boolean(touched && error);
-
+export const InputField = ({ field, isError, error, defaultProps }: IProps) => {
   return (
     <>
       <TextField error={isError} type="text" {...field} {...defaultProps} />
