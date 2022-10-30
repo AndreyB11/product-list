@@ -9,6 +9,8 @@ const rootReducer = combineReducers({
   productReducer,
 });
 
+export type RootState = ReturnType<typeof rootReducer>;
+
 export const store = createStore(rootReducer, applyMiddleware(sagaMiddleware));
 
 sagaMiddleware.run(rootSaga);

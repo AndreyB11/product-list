@@ -1,22 +1,22 @@
 import { Header } from "components/Layout/Header";
 import { PageLayout } from "components/Layout/PageLayout";
 import { ProductsTable } from "components/UI/Tables/ProductsTable";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { requestProducts } from "shared/store/reducers/productReducer";
+import { selectProductState } from "shared/store/selectors";
 
 const HomePage = () => {
+  const { products } = useSelector(selectProductState);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(requestProducts());
+  }, [dispatch]);
+
   return (
     <PageLayout header={<Header />}>
-      <ProductsTable
-        products={[
-          {
-            id: "1",
-            name: "acd",
-            brand: "adwd",
-            price: "123",
-            image:
-              "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
-          },
-        ]}
-      />
+      <ProductsTable products={products} />
     </PageLayout>
   );
 };

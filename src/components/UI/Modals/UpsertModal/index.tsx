@@ -51,6 +51,7 @@ export const UpsertModal = ({ visible, onCancel, title, product }: IProps) => {
     }
 
     actions.setSubmitting(false);
+    onCancel();
   };
 
   return (
