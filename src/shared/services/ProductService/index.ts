@@ -19,7 +19,7 @@ export class ProductService {
   }
 
   static async editProduct(product: IProduct) {
-    return {} as IProduct;
+    return product;
   }
 
   static async deleteProduct(product: IProduct) {}

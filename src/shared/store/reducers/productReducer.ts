@@ -49,7 +49,7 @@ export const productReducer = (
         isError: false,
         products: [
           ...state.products.filter(
-            (p) => p.id === (action.payload as IProduct).id
+            (p) => p.id !== (action.payload as IProduct).id
           ),
           action.payload as IProduct,
         ],
