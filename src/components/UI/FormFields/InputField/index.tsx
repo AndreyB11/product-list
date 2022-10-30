@@ -3,15 +3,15 @@ import { FieldError } from "../FieldError";
 
 interface IProps {
   defaultProps: TextFieldProps;
-  field: any;
-  isError: boolean;
-  error: string;
+  value: any;
+  isError?: boolean;
+  error?: string;
 }
 
-export const InputField = ({ field, isError, error, defaultProps }: IProps) => {
+export const InputField = ({ value, isError, error, defaultProps }: IProps) => {
   return (
     <>
-      <TextField error={isError} type="text" {...field} {...defaultProps} />
+      <TextField error={isError} type="text" value={value} {...defaultProps} />
       <FieldError>{isError ? error : ""}&nbsp;</FieldError>
     </>
   );
