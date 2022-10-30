@@ -3,27 +3,31 @@ import { call, put, takeLatest } from "redux-saga/effects";
 import { IProduct } from "shared/models";
 import {
   PRODUCT_ACTIONS,
-  requestProductsFail,
-  requestProductsSuccess,
   addProduct,
   setError,
   editProduct,
   deleteProduct,
+  setLoading,
+  setProducts,
 } from "../reducers/productReducer";
 
 function* fetchProductsWorker(): Generator {
   try {
+    yield put(setLoading(true));
     const data = yield call(ProductService.getAllProducts);
-    yield put(requestProductsSuccess(data as IProduct[]));
+    yield put(setProducts(data as IProduct[]));
+    yield put(setLoading(true));
   } catch (err) {
-    yield put(requestProductsFail("Failed to load products"));
+    yield put(setError("Could not fetch products"));
   }
 }
 
 function* addProductWorker(action: ReturnType<typeof addProduct>): Generator {
   try {
+    yield put(setLoading(true));
     yield call(ProductService.addProduct, action.payload);
     yield put(addProduct(action.payload));
+    yield put(setLoading(false));
   } catch (err) {
     yield put(setError("Could not add product"));
   }
@@ -31,8 +35,10 @@ function* addProductWorker(action: ReturnType<typeof addProduct>): Generator {
 
 function* editProductWorker(action: ReturnType<typeof editProduct>): Generator {
   try {
+    yield put(setLoading(true));
     yield call(ProductService.editProduct, action.payload);
     yield put(editProduct(action.payload));
+    yield put(setLoading(false));
   } catch (err) {
     yield put(setError("Could not edit product"));
   }
@@ -42,8 +48,10 @@ function* deleteProductWorker(
   action: ReturnType<typeof deleteProduct>
 ): Generator {
   try {
+    yield put(setLoading(true));
     yield call(ProductService.deleteProduct, action.payload);
     yield put(deleteProduct(action.payload));
+    yield put(setLoading(true));
   } catch (err) {
     yield put(setError("Could not delete product"));
   }

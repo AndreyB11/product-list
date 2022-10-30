@@ -12,14 +12,14 @@ export enum PRODUCT_ACTIONS {
   EDIT_PRODUCT = "EDIT_PRODUCT",
   DELETE_PRODUCT = "DELETE_PRODUCT",
   REQUEST_PRODUCTS = "REQUEST_PRODUCTS",
-  REQUEST_PRODUCTS_SUCCESS = "REQUEST_PRODUCTS_SUCCESS",
-  REQUEST_PRODUCTS_FAIL = "REQUEST_PRODUCTS_FAIL",
+  SET_PRODUCTS = "SET_PRODUCTS",
+  SET_LOADING = "SET_LOADING",
   SET_ERROR = "SET_ERROR",
 }
 
 interface ProductAction {
   type: PRODUCT_ACTIONS;
-  payload?: IProduct[] | IProduct | string;
+  payload?: IProduct[] | IProduct | string | boolean;
 }
 
 const defaultState: ProductReducerState = {
@@ -34,21 +34,6 @@ export const productReducer = (
   action: ProductAction
 ): ProductReducerState => {
   switch (action.type) {
-    case PRODUCT_ACTIONS.REQUEST_PRODUCTS:
-      return { ...state, products: [], isLoading: true, isError: false };
-    case PRODUCT_ACTIONS.REQUEST_PRODUCTS_SUCCESS:
-      return {
-        ...state,
-        products: action.payload as IProduct[],
-        isLoading: false,
-        isError: false,
-      };
-    case PRODUCT_ACTIONS.REQUEST_PRODUCTS_FAIL:
-      return {
-        ...state,
-        isError: true,
-        error: action.payload as string,
-      };
     case PRODUCT_ACTIONS.ADD_PRODUCT:
       return {
         ...state,
@@ -76,11 +61,24 @@ export const productReducer = (
           ),
         ],
       };
+    case PRODUCT_ACTIONS.SET_PRODUCTS:
+      return {
+        ...state,
+        isError: false,
+        products: action.payload as IProduct[],
+      };
     case PRODUCT_ACTIONS.SET_ERROR:
       return {
         ...state,
+        isLoading: false,
         isError: true,
         error: action.payload as string,
+      };
+    case PRODUCT_ACTIONS.SET_LOADING:
+      return {
+        ...state,
+        isError: false,
+        isLoading: action.payload as boolean,
       };
     default:
       return state;
@@ -90,20 +88,6 @@ export const productReducer = (
 export const requestProducts = () => {
   return {
     type: PRODUCT_ACTIONS.REQUEST_PRODUCTS,
-  };
-};
-
-export const requestProductsSuccess = (products: IProduct[]) => {
-  return {
-    type: PRODUCT_ACTIONS.REQUEST_PRODUCTS_SUCCESS,
-    payload: products,
-  };
-};
-
-export const requestProductsFail = (error: string) => {
-  return {
-    type: PRODUCT_ACTIONS.REQUEST_PRODUCTS_FAIL,
-    payload: error,
   };
 };
 
@@ -132,5 +116,19 @@ export const setError = (error: string) => {
   return {
     type: PRODUCT_ACTIONS.SET_ERROR,
     payload: error,
+  };
+};
+
+export const setLoading = (loading: boolean) => {
+  return {
+    type: PRODUCT_ACTIONS.SET_LOADING,
+    payload: loading,
+  };
+};
+
+export const setProducts = (products: IProduct[]) => {
+  return {
+    type: PRODUCT_ACTIONS.SET_PRODUCTS,
+    payload: products,
   };
 };
