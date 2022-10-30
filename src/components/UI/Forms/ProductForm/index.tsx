@@ -1,7 +1,7 @@
 import { Button } from "@mui/material";
 import { Box } from "@mui/system";
 import { InputField } from "components/UI/FormFields/InputField";
-import { Formik } from "formik";
+import { Formik, FormikHelpers, FormikValues } from "formik";
 import { IProduct } from "shared/models";
 import { productFormStyles } from "./productFormStyles";
 import {
@@ -12,7 +12,10 @@ import {
 } from "./validation";
 
 interface IProps {
-  onSubmit: (data: any) => void;
+  onSubmit: (
+    values: FormikValues,
+    actions: FormikHelpers<FormikValues>
+  ) => void;
   product?: IProduct;
 }
 
@@ -23,9 +26,7 @@ export const ProductForm = ({ onSubmit, product }: IProps) => {
 
   return (
     <Formik
-      onSubmit={(data) => {
-        console.log(data);
-      }}
+      onSubmit={onSubmit}
       initialValues={product ? initFromProduct(product) : initialValues}
       validationSchema={productValidationSchema.productForm}
     >

@@ -5,9 +5,13 @@ export class ProductService {
     return [] as IProduct[];
   }
 
-  static async addProduct(product: IProduct) {}
+  static async addProduct(product: Omit<IProduct, "id">) {
+    return {} as IProduct;
+  }
 
-  static async editProduct(product: IProduct) {}
+  static async editProduct(product: IProduct) {
+    return {} as IProduct;
+  }
 
   static async deleteProduct(product: IProduct) {}
 }

@@ -5,6 +5,12 @@ import { globalStyles } from "shared/theme";
 import { upsertModalStyles } from "./upsertModalStyles";
 import { ProductForm } from "components/UI/Forms/ProductForm";
 import { IProduct } from "shared/models";
+import { FormikHelpers, FormikValues } from "formik";
+import { useDispatch } from "react-redux";
+import {
+  requestAddProduct,
+  requestEditProduct,
+} from "shared/store/reducers/productReducer";
 
 interface IProps {
   visible: boolean;
@@ -14,6 +20,39 @@ interface IProps {
 }
 
 export const UpsertModal = ({ visible, onCancel, title, product }: IProps) => {
+  const dispatch = useDispatch();
+
+  const onSubmit = (
+    values: FormikValues,
+    actions: FormikHelpers<FormikValues>
+  ) => {
+    actions.setTouched({});
+    actions.setSubmitting(true);
+
+    if (product) {
+      dispatch(
+        requestEditProduct({
+          id: product.id,
+          brand: values.brand,
+          image: product.image,
+          name: values.name,
+          price: values.price,
+        })
+      );
+    } else {
+      dispatch(
+        requestAddProduct({
+          brand: values.brand,
+          image: "",
+          name: values.name,
+          price: values.price,
+        })
+      );
+    }
+
+    actions.setSubmitting(false);
+  };
+
   return (
     <GenericModal
       visible={visible}
@@ -35,7 +74,7 @@ export const UpsertModal = ({ visible, onCancel, title, product }: IProps) => {
           </IconButton>
         </Grid>
         <Grid item xs={12} mt={1}>
-          <ProductForm onSubmit={() => {}} product={product} />
+          <ProductForm onSubmit={onSubmit} product={product} />
         </Grid>
       </Grid>
     </GenericModal>

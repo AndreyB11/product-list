@@ -25,8 +25,8 @@ function* fetchProductsWorker(): Generator {
 function* addProductWorker(action: ReturnType<typeof addProduct>): Generator {
   try {
     yield put(setLoading(true));
-    yield call(ProductService.addProduct, action.payload);
-    yield put(addProduct(action.payload));
+    const product = yield call(ProductService.addProduct, action.payload);
+    yield put(addProduct(product as IProduct));
     yield put(setLoading(false));
   } catch (err) {
     yield put(setError("Could not add product"));
@@ -36,8 +36,8 @@ function* addProductWorker(action: ReturnType<typeof addProduct>): Generator {
 function* editProductWorker(action: ReturnType<typeof editProduct>): Generator {
   try {
     yield put(setLoading(true));
-    yield call(ProductService.editProduct, action.payload);
-    yield put(editProduct(action.payload));
+    const product = yield call(ProductService.editProduct, action.payload);
+    yield put(editProduct(product as IProduct));
     yield put(setLoading(false));
   } catch (err) {
     yield put(setError("Could not edit product"));
@@ -59,7 +59,7 @@ function* deleteProductWorker(
 
 export function* productWatcher() {
   yield takeLatest(PRODUCT_ACTIONS.REQUEST_PRODUCTS, fetchProductsWorker);
-  yield takeLatest(PRODUCT_ACTIONS.ADD_PRODUCT, addProductWorker);
-  yield takeLatest(PRODUCT_ACTIONS.EDIT_PRODUCT, editProductWorker);
-  yield takeLatest(PRODUCT_ACTIONS.DELETE_PRODUCT, deleteProductWorker);
+  yield takeLatest(PRODUCT_ACTIONS.REQUEST_ADD_PRODUCT, addProductWorker);
+  yield takeLatest(PRODUCT_ACTIONS.REQUEST_EDIT_PRODUCT, editProductWorker);
+  yield takeLatest(PRODUCT_ACTIONS.REQUEST_DELETE_PRODUCT, deleteProductWorker);
 }
