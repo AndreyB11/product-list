@@ -26,17 +26,25 @@ export const ProductsTable = ({ products }: IProps) => {
       columns={columns}
       data={products}
       keyExtractor={({ id }) => id}
-      renderRow={({ id, name, brand, price, image }) => (
+      renderRow={(product) => (
         <>
-          <TableCell>{id}</TableCell>
-          <TableCell>{name}</TableCell>
-          <TableCell>{brand}</TableCell>
-          <TableCell>{price}</TableCell>
+          <TableCell>{product.id}</TableCell>
+          <TableCell>{product.name}</TableCell>
+          <TableCell>{product.brand}</TableCell>
+          <TableCell>{product.price}</TableCell>
           <TableCell>
-            <Avatar src={image} />
+            <Avatar src={product.image} />
           </TableCell>
           <TableCell align="left">
-            <IconButton>
+            <IconButton
+              onClick={() => {
+                openModal("upsertModal", {
+                  visible: true,
+                  title: "Edit Product",
+                  product,
+                });
+              }}
+            >
               <EditIcon color="primary" />
             </IconButton>
             <IconButton

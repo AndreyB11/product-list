@@ -9,7 +9,7 @@ interface IProps {
   onCancel: () => void;
 }
 
-const DeleteModal = ({ visible, onCancel }: IProps) => {
+export const DeleteModal = ({ visible, onCancel }: IProps) => {
   return (
     <GenericModal
       visible={visible}
@@ -50,5 +50,3 @@ const DeleteModal = ({ visible, onCancel }: IProps) => {
     </GenericModal>
   );
 };
-
-export default DeleteModal;

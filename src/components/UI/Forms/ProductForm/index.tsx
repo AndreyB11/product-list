@@ -2,18 +2,21 @@ import { Button } from "@mui/material";
 import { Box } from "@mui/system";
 import { InputField } from "components/UI/FormFields/InputField";
 import { Formik } from "formik";
+import { IProduct } from "shared/models";
 import { productFormStyles } from "./productFormStyles";
 import {
   formModel,
+  initFromProduct,
   initialValues,
   productValidationSchema,
 } from "./validation";
 
 interface IProps {
   onSubmit: (data: any) => void;
+  product?: IProduct;
 }
 
-export const ProductForm = ({ onSubmit }: IProps) => {
+export const ProductForm = ({ onSubmit, product }: IProps) => {
   const {
     formFields: { name, price, brand },
   } = formModel;
@@ -23,7 +26,7 @@ export const ProductForm = ({ onSubmit }: IProps) => {
       onSubmit={(data) => {
         console.log(data);
       }}
-      initialValues={initialValues}
+      initialValues={product ? initFromProduct(product) : initialValues}
       validationSchema={productValidationSchema.productForm}
     >
       {({

@@ -2,11 +2,10 @@ import { Style } from "shared/theme";
 
 export const productFormStyles: Style = {
   container: {
-    width: "300px",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    m: 5,
+    m: 2,
   },
   field: {
     backgroundColor: "white",
