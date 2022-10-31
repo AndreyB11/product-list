@@ -3,13 +3,19 @@ import { GenericModal } from "../GenericModal";
 import CloseIcon from "@mui/icons-material/Close";
 import { deleteModalStyles } from "./deleteModalStyles";
 import { globalStyles } from "shared/theme";
+import { IProduct } from "shared/models";
+import { useDispatch } from "react-redux";
+import { requestDeleteProduct } from "shared/store/reducers/productReducer";
 
 interface IProps {
   visible: boolean;
   onCancel: () => void;
+  product: IProduct;
 }
 
-export const DeleteModal = ({ visible, onCancel }: IProps) => {
+export const DeleteModal = ({ visible, onCancel, product }: IProps) => {
+  const dispatch = useDispatch();
+
   return (
     <GenericModal
       visible={visible}
@@ -37,7 +43,10 @@ export const DeleteModal = ({ visible, onCancel }: IProps) => {
           <Button
             variant="contained"
             color="error"
-            onClick={onCancel}
+            onClick={() => {
+              dispatch(requestDeleteProduct(product));
+              onCancel();
+            }}
             sx={{ mr: 3 }}
           >
             Delete

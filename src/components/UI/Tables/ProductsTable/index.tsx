@@ -49,7 +49,7 @@ export const ProductsTable = ({ products }: IProps) => {
             </IconButton>
             <IconButton
               onClick={() => {
-                openModal("deleteModal", { visible: true });
+                openModal("deleteModal", { visible: true, product });
               }}
             >
               <DeleteIcon color="error" />
