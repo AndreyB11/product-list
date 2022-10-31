@@ -1,11 +1,11 @@
 export enum AppRoutes {
   Home = "Home",
-  NotFound = "NotFound",
+  Any = "Any",
 }
 
 export const RoutePath: Record<AppRoutes, string> = {
   [AppRoutes.Home]: "/",
-  [AppRoutes.NotFound]: "*",
+  [AppRoutes.Any]: "*",
 };
 
 export const API_URL = "http://localhost:3000";
