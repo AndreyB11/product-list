@@ -16,7 +16,7 @@ function* fetchProductsWorker(): Generator {
     yield put(setLoading(true));
     const data = yield call(ProductService.getAllProducts);
     yield put(setProducts(data as IProduct[]));
-    yield put(setLoading(true));
+    yield put(setLoading(false));
   } catch (err) {
     yield put(setError("Could not fetch products"));
   }
@@ -25,9 +25,12 @@ function* fetchProductsWorker(): Generator {
 function* addProductWorker(action: ReturnType<typeof addProduct>): Generator {
   try {
     yield put(setLoading(true));
-    const product = yield call(ProductService.addProduct, action.payload);
-    yield put(addProduct(product as IProduct));
-    yield put(setLoading(false));
+    yield call(ProductService.addProduct, action.payload);
+    yield call(fetchProductsWorker);
+
+    // const product = yield call(ProductService.addProduct, action.payload);
+    // yield put(addProduct(product as IProduct));
+    // yield put(setLoading(false));
   } catch (err) {
     yield put(setError("Could not add product"));
   }
@@ -36,9 +39,12 @@ function* addProductWorker(action: ReturnType<typeof addProduct>): Generator {
 function* editProductWorker(action: ReturnType<typeof editProduct>): Generator {
   try {
     yield put(setLoading(true));
-    const product = yield call(ProductService.editProduct, action.payload);
-    yield put(editProduct(product as IProduct));
-    yield put(setLoading(false));
+    yield call(ProductService.editProduct, action.payload);
+    yield call(fetchProductsWorker);
+
+    // const product = yield call(ProductService.editProduct, action.payload);
+    // yield put(editProduct(product as IProduct));
+    // yield put(setLoading(false));
   } catch (err) {
     yield put(setError("Could not edit product"));
   }
@@ -50,8 +56,10 @@ function* deleteProductWorker(
   try {
     yield put(setLoading(true));
     yield call(ProductService.deleteProduct, action.payload);
-    yield put(deleteProduct(action.payload));
-    yield put(setLoading(true));
+    yield call(fetchProductsWorker);
+
+    // yield put(deleteProduct(action.payload));
+    // yield put(setLoading(false));
   } catch (err) {
     yield put(setError("Could not delete product"));
   }

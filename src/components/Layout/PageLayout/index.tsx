@@ -4,7 +4,7 @@ import { pageLayoutStyles } from "./pageLayoutStyles";
 
 interface IProps {
   header: React.ReactNode;
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 export const PageLayout = ({ children, header }: IProps) => {

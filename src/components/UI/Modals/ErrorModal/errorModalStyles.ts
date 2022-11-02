@@ -1,14 +1,14 @@
 import { Style } from "shared/theme";
 
-export const upsertModalStyles: Style = {
+export const errorModalStyles: Style = {
   modal: {
     position: "absolute",
     top: "45%",
     left: "50%",
     transform: "translate(-50%, -50%)",
     bgcolor: "white",
-    width: "350px",
-    height: "450px",
+    width: "300px",
+    height: "200px",
     boxShadow: 24,
     outline: "none",
   },

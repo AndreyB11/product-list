@@ -74,7 +74,7 @@ export const productReducer = (
       return {
         ...state,
         isLoading: false,
-        isError: true,
+        isError: (action.payload as string).length > 0,
         error: action.payload as string,
       };
     case PRODUCT_ACTIONS.SET_LOADING:
