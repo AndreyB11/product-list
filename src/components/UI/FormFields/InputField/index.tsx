@@ -1,8 +1,7 @@
 import { TextField, TextFieldProps } from "@mui/material";
 import { FieldError } from "../FieldError";
 
-interface IProps {
-  defaultProps: TextFieldProps;
+interface IProps extends TextFieldProps {
   field: any;
   isError: boolean;
   error: string;
