@@ -6,7 +6,7 @@ interface IProps {
   children: ReactNode;
 }
 
-export const fieldErrorStyles: Style = {
+const fieldErrorStyles: Style = {
   fieldError: {
     color: "red",
     whiteSpace: "pre-line",
