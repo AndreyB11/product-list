@@ -1,11 +1,20 @@
-import React from "react";
+import { ReactNode } from "react";
 import { Typography } from "@mui/material";
-import { fieldErrorStyles } from "./fieldErrorStyles";
+import { Style } from "shared/theme";
 
 interface IProps {
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
-export const FieldError = ({ children }: IProps) => {
-  return <Typography sx={fieldErrorStyles.fieldError}>{children}</Typography>;
+export const fieldErrorStyles: Style = {
+  fieldError: {
+    color: "red",
+    whiteSpace: "pre-line",
+    fontSize: "13px",
+    marginTop: "5px",
+  },
 };
+
+export const FieldError = ({ children }: IProps) => (
+  <Typography sx={fieldErrorStyles.fieldError}>{children}</Typography>
+);
