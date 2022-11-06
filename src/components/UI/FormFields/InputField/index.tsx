@@ -12,11 +12,9 @@ export const InputField = ({
   isError,
   errorMessage,
   ...defaultProps
-}: IProps) => {
-  return (
-    <>
-      <TextField error={isError} type="text" {...field} {...defaultProps} />
-      <FieldError>{isError ? errorMessage : ""}&nbsp;</FieldError>
-    </>
-  );
-};
+}: IProps) => (
+  <>
+    <TextField error={isError} type="text" {...field} {...defaultProps} />
+    <FieldError>{isError ? errorMessage : ""}&nbsp;</FieldError>
+  </>
+);
