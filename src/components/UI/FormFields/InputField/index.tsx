@@ -7,7 +7,12 @@ interface IProps extends TextFieldProps {
   error: string;
 }
 
-export const InputField = ({ field, isError, error, defaultProps }: IProps) => {
+export const InputField = ({
+  field,
+  isError,
+  error,
+  ...defaultProps
+}: IProps) => {
   return (
     <>
       <TextField error={isError} type="text" {...field} {...defaultProps} />
