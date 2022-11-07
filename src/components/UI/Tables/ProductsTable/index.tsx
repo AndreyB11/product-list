@@ -13,6 +13,10 @@ interface IProps {
 export const ProductsTable = ({ products }: IProps) => {
   const { openModal } = useModal();
 
+  const handleDeleteClick = () => {
+    openModal("deleteModal", { visible: true });
+  };
+
   return (
     <GenericTable
       columns={productTableColumns}
@@ -31,11 +35,7 @@ export const ProductsTable = ({ products }: IProps) => {
             <IconButton>
               <EditIcon color="primary" />
             </IconButton>
-            <IconButton
-              onClick={() => {
-                openModal("deleteModal", { visible: true });
-              }}
-            >
+            <IconButton onClick={handleDeleteClick}>
               <DeleteIcon color="error" />
             </IconButton>
           </TableCell>
