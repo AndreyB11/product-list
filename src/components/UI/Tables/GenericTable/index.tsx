@@ -22,7 +22,7 @@ interface IProps<T> {
   data: T[];
 }
 
-export const GenericTable = <T extends unknown>({
+export const GenericTable = <T extends object>({
   columns,
   data,
   renderRow,
