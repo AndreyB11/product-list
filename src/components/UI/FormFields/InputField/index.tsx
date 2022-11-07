@@ -2,19 +2,19 @@ import { FilledTextFieldProps, TextField } from "@mui/material";
 import { FieldError } from "../FieldError";
 
 interface IProps extends FilledTextFieldProps {
-  field: any;
+  value: any;
   isError: boolean;
   errorMessage: string;
 }
 
 export const InputField = ({
-  field,
+  value,
   isError,
   errorMessage,
   ...defaultProps
 }: IProps) => (
   <>
-    <TextField error={isError} type="text" {...field} {...defaultProps} />
+    <TextField error={isError} value={value} type="text" {...defaultProps} />
     <FieldError>{isError ? errorMessage : ""}&nbsp;</FieldError>
   </>
 );
