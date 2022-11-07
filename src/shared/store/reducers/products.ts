@@ -78,7 +78,7 @@ export const productReducer = (
         ...state,
         isLoading: false,
         isError: true,
-        error: action.payload as string,
+        error: action.payload,
       };
     case PRODUCT_ACTIONS.DELETE_PRODUCT_PENDING:
       return {
@@ -97,7 +97,7 @@ export const productReducer = (
         ...state,
         isLoading: false,
         isError: true,
-        error: action.payload as string,
+        error: action.payload,
       };
     default:
       return state;
