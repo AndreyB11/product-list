@@ -25,51 +25,82 @@ export const productReducer = (
   action: ProductAction
 ): ProductReducerState => {
   switch (action.type) {
-    case PRODUCT_ACTIONS.ADD_PRODUCT:
+    case PRODUCT_ACTIONS.FETCH_PRODUCTS_PENDING:
       return {
         ...state,
+        isLoading: true,
         isError: false,
-        products: [...state.products, action.payload as IProduct],
       };
-    case PRODUCT_ACTIONS.EDIT_PRODUCT:
-      return {
-        ...state,
-        isError: false,
-        products: [
-          ...state.products.filter(
-            (p) => p.id !== (action.payload as IProduct).id
-          ),
-          action.payload as IProduct,
-        ],
-      };
-    case PRODUCT_ACTIONS.DELETE_PRODUCT:
-      return {
-        ...state,
-        isError: false,
-        products: [
-          ...state.products.filter(
-            (p) => p.id !== (action.payload as IProduct).id
-          ),
-        ],
-      };
-    case PRODUCT_ACTIONS.SET_PRODUCTS:
-      return {
-        ...state,
-        isError: false,
-        products: action.payload as IProduct[],
-      };
-    case PRODUCT_ACTIONS.SET_ERROR:
+    case PRODUCT_ACTIONS.FETCH_PRODUCTS_SUCCESS:
       return {
         ...state,
         isLoading: false,
-        isError: (action.payload as string).length > 0,
-        error: action.payload as string,
+        isError: false,
+        products: action.payload as IProduct[],
       };
-    case PRODUCT_ACTIONS.SET_LOADING:
+    case PRODUCT_ACTIONS.FETCH_PRODUCTS_FAILED:
       return {
         ...state,
+        isLoading: false,
+        isError: true,
+        error: action.payload as string,
+      };
+    case PRODUCT_ACTIONS.ADD_PRODUCT_PENDING:
+      return {
+        ...state,
+        isLoading: true,
         isError: false,
-        isLoading: action.payload as boolean,
+      };
+    case PRODUCT_ACTIONS.ADD_PRODUCT_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        isError: false,
+      };
+    case PRODUCT_ACTIONS.ADD_PRODUCT_FAILED:
+      return {
+        ...state,
+        isLoading: false,
+        isError: true,
+        error: action.payload as string,
+      };
+    case PRODUCT_ACTIONS.EDIT_PRODUCT_PENDING:
+      return {
+        ...state,
+        isLoading: true,
+        isError: false,
+      };
+    case PRODUCT_ACTIONS.EDIT_PRODUCT_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        isError: false,
+      };
+    case PRODUCT_ACTIONS.EDIT_PRODUCT_FAILED:
+      return {
+        ...state,
+        isLoading: false,
+        isError: true,
+        error: action.payload as string,
+      };
+    case PRODUCT_ACTIONS.DELETE_PRODUCT_PENDING:
+      return {
+        ...state,
+        isLoading: true,
+        isError: false,
+      };
+    case PRODUCT_ACTIONS.DELETE_PRODUCT_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        isError: false,
+      };
+    case PRODUCT_ACTIONS.DELETE_PRODUCT_FAILED:
+      return {
+        ...state,
+        isLoading: false,
+        isError: true,
+        error: action.payload as string,
       };
     default:
       return state;
