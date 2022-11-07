@@ -15,6 +15,9 @@ import {
   requestAddProduct,
   requestEditProduct,
   requestDeleteProduct,
+  addProductSuccess,
+  editProductSuccess,
+  deleteProductSuccess,
 } from "../actions/productActions";
 
 function* fetchProductsWorker(): Generator {
@@ -33,6 +36,7 @@ function* addProductWorker(
   try {
     yield put(addProduct());
     yield call(ProductService.addProduct, action.payload);
+    yield put(addProductSuccess());
     yield call(fetchProductsWorker);
   } catch (err) {
     yield put(addProductFailed("Could not add product"));
@@ -45,6 +49,7 @@ function* editProductWorker(
   try {
     yield put(editProduct());
     yield call(ProductService.editProduct, action.payload);
+    yield put(editProductSuccess());
     yield call(fetchProductsWorker);
   } catch (err) {
     yield put(editProductFailed("Could not edit product"));
@@ -57,6 +62,7 @@ function* deleteProductWorker(
   try {
     yield put(deleteProduct());
     yield call(ProductService.deleteProduct, action.payload);
+    yield put(deleteProductSuccess());
     yield call(fetchProductsWorker);
   } catch (err) {
     yield put(deleteProductFailed("Could not delete product"));
