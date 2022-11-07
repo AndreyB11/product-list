@@ -11,6 +11,9 @@ export enum PRODUCT_ACTIONS {
   ADD_PRODUCT = "ADD_PRODUCT",
   EDIT_PRODUCT = "EDIT_PRODUCT",
   DELETE_PRODUCT = "DELETE_PRODUCT",
+  REQUEST_ADD_PRODUCT = "REQUEST_ADD_PRODUCT",
+  REQUEST_EDIT_PRODUCT = "REQUEST_EDIT_PRODUCT",
+  REQUEST_DELETE_PRODUCT = "REQUEST_DELETE_PRODUCT",
   REQUEST_PRODUCTS = "REQUEST_PRODUCTS",
   SET_PRODUCTS = "SET_PRODUCTS",
   SET_LOADING = "SET_LOADING",
@@ -46,7 +49,7 @@ export const productReducer = (
         isError: false,
         products: [
           ...state.products.filter(
-            (p) => p.id === (action.payload as IProduct).id
+            (p) => p.id !== (action.payload as IProduct).id
           ),
           action.payload as IProduct,
         ],
@@ -57,7 +60,7 @@ export const productReducer = (
         isError: false,
         products: [
           ...state.products.filter(
-            (p) => p.id === (action.payload as IProduct).id
+            (p) => p.id !== (action.payload as IProduct).id
           ),
         ],
       };
@@ -71,7 +74,7 @@ export const productReducer = (
       return {
         ...state,
         isLoading: false,
-        isError: true,
+        isError: (action.payload as string).length > 0,
         error: action.payload as string,
       };
     case PRODUCT_ACTIONS.SET_LOADING:
@@ -88,6 +91,27 @@ export const productReducer = (
 export const requestProducts = () => {
   return {
     type: PRODUCT_ACTIONS.REQUEST_PRODUCTS,
+  };
+};
+
+export const requestAddProduct = (product: Omit<IProduct, "id">) => {
+  return {
+    type: PRODUCT_ACTIONS.REQUEST_ADD_PRODUCT,
+    payload: product,
+  };
+};
+
+export const requestEditProduct = (product: IProduct) => {
+  return {
+    type: PRODUCT_ACTIONS.REQUEST_EDIT_PRODUCT,
+    payload: product,
+  };
+};
+
+export const requestDeleteProduct = (product: IProduct) => {
+  return {
+    type: PRODUCT_ACTIONS.REQUEST_DELETE_PRODUCT,
+    payload: product,
   };
 };
 
