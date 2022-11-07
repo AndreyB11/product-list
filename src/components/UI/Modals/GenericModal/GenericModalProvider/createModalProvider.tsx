@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import { useState, useContext, createContext } from "react";
 
 interface IProps {
   children: React.ReactNode;
@@ -15,7 +15,7 @@ export const createModalProvider = <
 >(
   modals: T
 ) => {
-  const ModalContext = React.createContext({
+  const ModalContext = createContext({
     openModal: <M extends keyof T>(
       modal: M,
       props: ModalProps<typeof modals[M]>

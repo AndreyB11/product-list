@@ -4,14 +4,12 @@ import { ModalProvider } from "components/UI/Modals/GenericModal/GenericModalPro
 import { Provider } from "react-redux";
 import { store } from "shared/store";
 
-export const App = () => {
-  return (
-    <Provider store={store}>
-      <BrowserRouter>
-        <ModalProvider>
-          <AppRouter />
-        </ModalProvider>
-      </BrowserRouter>
-    </Provider>
-  );
-};
+export const App = () => (
+  <Provider store={store}>
+    <BrowserRouter>
+      <ModalProvider>
+        <AppRouter />
+      </ModalProvider>
+    </BrowserRouter>
+  </Provider>
+);

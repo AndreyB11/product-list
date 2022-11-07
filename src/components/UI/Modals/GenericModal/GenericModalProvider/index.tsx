@@ -1,4 +1,4 @@
-import DeleteModal from "components/UI/Modals/DeleteModal";
+import { DeleteModal } from "components/UI/Modals/DeleteModal";
 import { createModalProvider } from "./createModalProvider";
 
 const modals = {
