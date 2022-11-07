@@ -1,8 +1,8 @@
 import { Avatar, IconButton, TableCell } from "@mui/material";
-import { IProduct } from "shared/models";
-import { GenericTable } from "../GenericTable";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { IProduct } from "shared/models";
+import { GenericTable } from "../GenericTable";
 import { productTableColumns } from "./productTableColumns";
 
 interface IProps {

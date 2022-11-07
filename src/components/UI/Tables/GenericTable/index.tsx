@@ -1,4 +1,3 @@
-import React from "react";
 import {
   TableContainer,
   Paper,
@@ -10,7 +9,7 @@ import {
 } from "@mui/material";
 
 export interface IGenericTableColumn {
-  key: string;
+  key?: string;
   name: string;
   width?: string;
 }
