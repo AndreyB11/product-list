@@ -27,25 +27,23 @@ export const GenericTable = <T extends unknown>({
   data,
   renderRow,
   keyExtractor,
-}: IProps<T>) => {
-  return (
-    <TableContainer component={Paper}>
-      <Table>
-        <TableHead>
-          <TableRow>
-            {columns.map(({ key, name, width }) => (
-              <TableCell key={key} sx={width ? { width } : {}}>
-                {name}
-              </TableCell>
-            ))}
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {data.map((item) => (
-            <TableRow key={keyExtractor(item)}>{renderRow(item)}</TableRow>
+}: IProps<T>) => (
+  <TableContainer component={Paper}>
+    <Table>
+      <TableHead>
+        <TableRow>
+          {columns.map(({ key, name, width }) => (
+            <TableCell key={key} sx={width ? { width } : {}}>
+              {name}
+            </TableCell>
           ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
-  );
-};
+        </TableRow>
+      </TableHead>
+      <TableBody>
+        {data.map((item) => (
+          <TableRow key={keyExtractor(item)}>{renderRow(item)}</TableRow>
+        ))}
+      </TableBody>
+    </Table>
+  </TableContainer>
+);

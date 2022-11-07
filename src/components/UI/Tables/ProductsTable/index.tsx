@@ -17,31 +17,29 @@ const columns: IGenericTableColumn[] = [
   { key: "actions", name: "", width: "10%" },
 ];
 
-export const ProductsTable = ({ products }: IProps) => {
-  return (
-    <GenericTable
-      columns={columns}
-      data={products}
-      keyExtractor={({ id }) => id}
-      renderRow={({ id, name, brand, price, image }) => (
-        <>
-          <TableCell>{id}</TableCell>
-          <TableCell>{name}</TableCell>
-          <TableCell>{brand}</TableCell>
-          <TableCell>{price}</TableCell>
-          <TableCell>
-            <Avatar src={image} />
-          </TableCell>
-          <TableCell align="left">
-            <IconButton>
-              <EditIcon color="primary" />
-            </IconButton>
-            <IconButton>
-              <DeleteIcon color="error" />
-            </IconButton>
-          </TableCell>
-        </>
-      )}
-    />
-  );
-};
+export const ProductsTable = ({ products }: IProps) => (
+  <GenericTable
+    columns={columns}
+    data={products}
+    keyExtractor={({ id }) => id}
+    renderRow={({ id, name, brand, price, image }) => (
+      <>
+        <TableCell>{id}</TableCell>
+        <TableCell>{name}</TableCell>
+        <TableCell>{brand}</TableCell>
+        <TableCell>{price}</TableCell>
+        <TableCell>
+          <Avatar src={image} />
+        </TableCell>
+        <TableCell align="left">
+          <IconButton>
+            <EditIcon color="primary" />
+          </IconButton>
+          <IconButton>
+            <DeleteIcon color="error" />
+          </IconButton>
+        </TableCell>
+      </>
+    )}
+  />
+);
