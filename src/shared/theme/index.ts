@@ -3,4 +3,8 @@ import { Theme } from "@mui/system";
 
 export type Style = Record<string, SxProps<Theme>>;
 
-export const globalStyles: Style = {};
+export const globalStyles: Style = {
+  whiteColor: {
+    color: "white",
+  },
+};
