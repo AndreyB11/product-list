@@ -1,9 +1,8 @@
-import { ReactNode } from "react";
 import { Typography } from "@mui/material";
 import { Style } from "shared/theme";
 
 interface IProps {
-  children: ReactNode;
+  children: React.ReactNode;
 }
 
 const fieldErrorStyles: Style = {

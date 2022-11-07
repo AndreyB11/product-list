@@ -1,4 +1,3 @@
-import React from "react";
 import { Box, CssBaseline, Container } from "@mui/material";
 import { Style } from "shared/theme";
 
@@ -9,7 +8,6 @@ interface IProps {
 
 const pageLayoutStyles: Style = {
   containerWrapper: {
-    height: "100vh",
     display: "flex",
     flexDirection: "column",
   },
@@ -18,12 +16,10 @@ const pageLayoutStyles: Style = {
   },
 };
 
-export const PageLayout = ({ children, header }: IProps) => {
-  return (
-    <Box sx={pageLayoutStyles.containerWrapper}>
-      {header}
-      <CssBaseline />
-      <Container sx={pageLayoutStyles.container}>{children}</Container>
-    </Box>
-  );
-};
+export const PageLayout = ({ children, header }: IProps) => (
+  <Box sx={pageLayoutStyles.containerWrapper}>
+    {header}
+    <CssBaseline />
+    <Container sx={pageLayoutStyles.container}>{children}</Container>
+  </Box>
+);

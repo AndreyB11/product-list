@@ -1,20 +1,20 @@
-import { TextField, TextFieldProps } from "@mui/material";
+import { FilledTextFieldProps, TextField } from "@mui/material";
 import { FieldError } from "../FieldError";
 
-type IProps = {
-  field: any;
+interface IProps extends FilledTextFieldProps {
+  value: any;
   isError: boolean;
   errorMessage: string;
-} & TextFieldProps;
+}
 
 export const InputField = ({
-  field,
+  value,
   isError,
   errorMessage,
   ...defaultProps
 }: IProps) => (
   <>
-    <TextField error={isError} type="text" {...field} {...defaultProps} />
+    <TextField error={isError} value={value} type="text" {...defaultProps} />
     <FieldError>{isError ? errorMessage : ""}&nbsp;</FieldError>
   </>
 );
