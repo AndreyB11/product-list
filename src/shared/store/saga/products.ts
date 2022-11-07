@@ -2,7 +2,6 @@ import { ProductService } from "shared/services/ProductService";
 import { call, put, takeLatest } from "redux-saga/effects";
 import { IProduct } from "shared/models";
 import {
-  PRODUCT_ACTIONS,
   fetchProducts,
   addProduct,
   editProduct,
@@ -18,7 +17,8 @@ import {
   addProductSuccess,
   editProductSuccess,
   deleteProductSuccess,
-} from "../actions/productActions";
+} from "../actions/products";
+import { PRODUCT_ACTIONS } from "../actionTypes/products";
 
 function* fetchProductsWorker(): Generator {
   try {
