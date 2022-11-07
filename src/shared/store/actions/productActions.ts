@@ -1,83 +1,95 @@
 import { IProduct } from "shared/models";
 
 export enum PRODUCT_ACTIONS {
-  ADD_PRODUCT = "ADD_PRODUCT",
-  EDIT_PRODUCT = "EDIT_PRODUCT",
-  DELETE_PRODUCT = "DELETE_PRODUCT",
+  REQUEST_FETCH_PRODUCTS = "REQUEST_FETCH_PRODUCTS",
+  FETCH_PRODUCTS_PENDING = "FETCH_PRODUCTS_PENDING",
+  FETCH_PRODUCTS_SUCCESS = "FETCH_PRODUCTS_SUCCESS",
+  FETCH_PRODUCTS_FAILED = "FETCH_PRODUCTS_FAILED",
+
   REQUEST_ADD_PRODUCT = "REQUEST_ADD_PRODUCT",
+  ADD_PRODUCT_PENDING = "ADD_PRODUCT_PENDING",
+  ADD_PRODUCT_SUCCESS = "ADD_PRODUCT_SUCCESS",
+  ADD_PRODUCT_FAILED = "ADD_PRODUCT_FAILED",
+
   REQUEST_EDIT_PRODUCT = "REQUEST_EDIT_PRODUCT",
+  EDIT_PRODUCT_PENDING = "EDIT_PRODUCT_PENDING",
+  EDIT_PRODUCT_SUCCESS = "EDIT_PRODUCT_SUCCESS",
+  EDIT_PRODUCT_FAILED = "EDIT_PRODUCT_FAILED",
+
   REQUEST_DELETE_PRODUCT = "REQUEST_DELETE_PRODUCT",
-  REQUEST_PRODUCTS = "REQUEST_PRODUCTS",
-  SET_PRODUCTS = "SET_PRODUCTS",
-  SET_LOADING = "SET_LOADING",
-  SET_ERROR = "SET_ERROR",
+  DELETE_PRODUCT_PENDING = "DELETE_PRODUCT_PENDING",
+  DELETE_PRODUCT_SUCCESS = "DELETE_PRODUCT_SUCCESS",
+  DELETE_PRODUCT_FAILED = "DELETE_PRODUCT_FAILED",
 }
 
-export const requestProducts = () => {
-  return {
-    type: PRODUCT_ACTIONS.REQUEST_PRODUCTS,
-  };
-};
+export const requestFetchProducts = () => ({
+  type: PRODUCT_ACTIONS.REQUEST_FETCH_PRODUCTS,
+});
 
-export const requestAddProduct = (product: Omit<IProduct, "id">) => {
-  return {
-    type: PRODUCT_ACTIONS.REQUEST_ADD_PRODUCT,
-    payload: product,
-  };
-};
+export const fetchProducts = () => ({
+  type: PRODUCT_ACTIONS.FETCH_PRODUCTS_PENDING,
+});
 
-export const requestEditProduct = (product: IProduct) => {
-  return {
-    type: PRODUCT_ACTIONS.REQUEST_EDIT_PRODUCT,
-    payload: product,
-  };
-};
+export const fetchProductsSuccess = (products: IProduct[]) => ({
+  type: PRODUCT_ACTIONS.FETCH_PRODUCTS_SUCCESS,
+  payload: products,
+});
 
-export const requestDeleteProduct = (product: IProduct) => {
-  return {
-    type: PRODUCT_ACTIONS.REQUEST_DELETE_PRODUCT,
-    payload: product,
-  };
-};
+export const fetchProductsFailed = (error: string) => ({
+  type: PRODUCT_ACTIONS.FETCH_PRODUCTS_FAILED,
+  payload: error,
+});
 
-export const addProduct = (product: IProduct) => {
-  return {
-    type: PRODUCT_ACTIONS.ADD_PRODUCT,
-    payload: product,
-  };
-};
+export const requestAddProduct = (product: IProduct) => ({
+  type: PRODUCT_ACTIONS.REQUEST_ADD_PRODUCT,
+  payload: product,
+});
 
-export const editProduct = (product: IProduct) => {
-  return {
-    type: PRODUCT_ACTIONS.EDIT_PRODUCT,
-    payload: product,
-  };
-};
+export const addProduct = () => ({
+  type: PRODUCT_ACTIONS.ADD_PRODUCT_PENDING,
+});
 
-export const deleteProduct = (product: IProduct) => {
-  return {
-    type: PRODUCT_ACTIONS.DELETE_PRODUCT,
-    payload: product,
-  };
-};
+export const addProductSuccess = () => ({
+  type: PRODUCT_ACTIONS.ADD_PRODUCT_SUCCESS,
+});
 
-export const setError = (error: string) => {
-  return {
-    type: PRODUCT_ACTIONS.SET_ERROR,
-    payload: error,
-  };
-};
+export const addProductFailed = (error: string) => ({
+  type: PRODUCT_ACTIONS.ADD_PRODUCT_FAILED,
+  payload: error,
+});
 
-export const setLoading = (loading: boolean) => {
-  return {
-    type: PRODUCT_ACTIONS.SET_LOADING,
-    payload: loading,
-  };
-};
+export const requestEditProduct = (product: IProduct) => ({
+  type: PRODUCT_ACTIONS.REQUEST_EDIT_PRODUCT,
+  payload: product,
+});
 
-export const setProducts = (products: IProduct[]) => {
-  return {
-    type: PRODUCT_ACTIONS.SET_PRODUCTS,
-    payload: products,
-  };
-};
+export const editProduct = () => ({
+  type: PRODUCT_ACTIONS.EDIT_PRODUCT_PENDING,
+});
+
+export const editProductSuccess = () => ({
+  type: PRODUCT_ACTIONS.EDIT_PRODUCT_SUCCESS,
+});
+
+export const editProductFailed = (error: string) => ({
+  type: PRODUCT_ACTIONS.EDIT_PRODUCT_FAILED,
+  payload: error,
+});
+
+export const requestDeleteProduct = (product: IProduct) => ({
+  type: PRODUCT_ACTIONS.REQUEST_DELETE_PRODUCT,
+  payload: product,
+});
+
+export const deleteProduct = () => ({
+  type: PRODUCT_ACTIONS.DELETE_PRODUCT_PENDING,
+});
+
+export const deleteProductSuccess = () => ({
+  type: PRODUCT_ACTIONS.DELETE_PRODUCT_SUCCESS,
+});
+
+export const deleteProductFailed = (error: string) => ({
+  type: PRODUCT_ACTIONS.DELETE_PRODUCT_FAILED,
+  payload: error,
+});

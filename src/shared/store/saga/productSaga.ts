@@ -3,59 +3,68 @@ import { call, put, takeLatest } from "redux-saga/effects";
 import { IProduct } from "shared/models";
 import {
   PRODUCT_ACTIONS,
+  fetchProducts,
   addProduct,
-  setError,
   editProduct,
   deleteProduct,
-  setLoading,
-  setProducts,
-} from "../reducers/productReducer";
+  fetchProductsSuccess,
+  fetchProductsFailed,
+  addProductFailed,
+  editProductFailed,
+  deleteProductFailed,
+  requestAddProduct,
+  requestEditProduct,
+  requestDeleteProduct,
+} from "../actions/productActions";
 
 function* fetchProductsWorker(): Generator {
   try {
-    yield put(setLoading(true));
+    yield put(fetchProducts());
     const data = yield call(ProductService.getAllProducts);
-    yield put(setProducts(data as IProduct[]));
-    yield put(setLoading(false));
+    yield put(fetchProductsSuccess(data as IProduct[]));
   } catch (err) {
-    yield put(setError("Could not fetch products"));
+    yield put(fetchProductsFailed("Could not fetch products"));
   }
 }
 
-function* addProductWorker(action: ReturnType<typeof addProduct>): Generator {
+function* addProductWorker(
+  action: ReturnType<typeof requestAddProduct>
+): Generator {
   try {
-    yield put(setLoading(true));
+    yield put(addProduct());
     yield call(ProductService.addProduct, action.payload);
     yield call(fetchProductsWorker);
   } catch (err) {
-    yield put(setError("Could not add product"));
+    yield put(addProductFailed("Could not add product"));
   }
 }
 
-function* editProductWorker(action: ReturnType<typeof editProduct>): Generator {
+function* editProductWorker(
+  action: ReturnType<typeof requestEditProduct>
+): Generator {
   try {
-    yield put(setLoading(true));
+    yield put(editProduct());
     yield call(ProductService.editProduct, action.payload);
     yield call(fetchProductsWorker);
   } catch (err) {
-    yield put(setError("Could not edit product"));
+    yield put(editProductFailed("Could not edit product"));
   }
 }
 
 function* deleteProductWorker(
-  action: ReturnType<typeof deleteProduct>
+  action: ReturnType<typeof requestDeleteProduct>
 ): Generator {
   try {
-    yield put(setLoading(true));
+    yield put(deleteProduct());
     yield call(ProductService.deleteProduct, action.payload);
     yield call(fetchProductsWorker);
   } catch (err) {
-    yield put(setError("Could not delete product"));
+    yield put(deleteProductFailed("Could not delete product"));
   }
 }
 
 export function* productWatcher() {
-  yield takeLatest(PRODUCT_ACTIONS.REQUEST_PRODUCTS, fetchProductsWorker);
+  yield takeLatest(PRODUCT_ACTIONS.REQUEST_FETCH_PRODUCTS, fetchProductsWorker);
   yield takeLatest(PRODUCT_ACTIONS.REQUEST_ADD_PRODUCT, addProductWorker);
   yield takeLatest(PRODUCT_ACTIONS.REQUEST_EDIT_PRODUCT, editProductWorker);
   yield takeLatest(PRODUCT_ACTIONS.REQUEST_DELETE_PRODUCT, deleteProductWorker);
