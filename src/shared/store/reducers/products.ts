@@ -7,14 +7,14 @@ interface ProductReducerState {
   products: IProduct[];
   isLoading: boolean;
   isError: boolean;
-  error: string;
+  error: string | null;
 }
 
 const defaultState: ProductReducerState = {
   products: [],
   isError: false,
   isLoading: false,
-  error: "",
+  error: null,
 };
 
 export const productReducer = (
