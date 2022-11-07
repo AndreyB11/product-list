@@ -1,11 +1,11 @@
-import { TextField, TextFieldProps } from "@mui/material";
+import { FilledTextFieldProps, TextField } from "@mui/material";
 import { FieldError } from "../FieldError";
 
-type IProps = {
+interface IProps extends FilledTextFieldProps {
   field: any;
   isError: boolean;
   errorMessage: string;
-} & TextFieldProps;
+}
 
 export const InputField = ({
   field,
