@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 
 export interface IGenericTableColumn {
-  key?: string;
+  id: string;
   name: string;
   width?: string;
 }
@@ -31,8 +31,8 @@ export const GenericTable = <T extends object>({
     <Table>
       <TableHead>
         <TableRow>
-          {columns.map(({ key, name, width }) => (
-            <TableCell key={key} sx={width ? { width } : {}}>
+          {columns.map(({ id, name, width }) => (
+            <TableCell key={id} sx={width ? { width } : {}}>
               {name}
             </TableCell>
           ))}
