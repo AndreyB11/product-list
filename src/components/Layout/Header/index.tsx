@@ -18,17 +18,16 @@ const headerStyles: Style = {
 export const Header = () => {
   const { openModal } = useModal();
 
+  const handleOpenClick = () => {
+    openModal("upsertModal", { visible: true, title: "Create Product" });
+  };
+
   return (
     <Box sx={headerStyles.header}>
       <Typography variant="h3" component="h1" color="white">
         Product List
       </Typography>
-      <IconButton
-        size="large"
-        onClick={() => {
-          openModal("upsertModal", { visible: true, title: "Create Product" });
-        }}
-      >
+      <IconButton size="large" onClick={handleOpenClick}>
         <AddIcon sx={globalStyles.whiteColor} />
       </IconButton>
     </Box>

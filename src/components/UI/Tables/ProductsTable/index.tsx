@@ -17,6 +17,14 @@ export const ProductsTable = ({ products }: IProps) => {
     openModal("deleteModal", { visible: true, product });
   };
 
+  const handleEditClick = (product: IProduct) => {
+    openModal("upsertModal", {
+      visible: true,
+      title: "Edit Product",
+      product,
+    });
+  };
+
   return (
     <GenericTable
       columns={productTableColumns}
@@ -32,15 +40,7 @@ export const ProductsTable = ({ products }: IProps) => {
             <Avatar src={product.image} />
           </TableCell>
           <TableCell align="left">
-            <IconButton
-              onClick={() => {
-                openModal("upsertModal", {
-                  visible: true,
-                  title: "Edit Product",
-                  product,
-                });
-              }}
-            >
+            <IconButton onClick={() => handleEditClick(product)}>
               <EditIcon color="primary" />
             </IconButton>
             <IconButton onClick={() => handleDeleteClick(product)}>
