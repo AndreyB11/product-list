@@ -1,18 +1,25 @@
-import React from "react";
 import { Box, CssBaseline, Container } from "@mui/material";
-import { pageLayoutStyles } from "./pageLayoutStyles";
+import { Style } from "shared/theme";
 
 interface IProps {
   header: React.ReactNode;
   children: React.ReactNode;
 }
 
-export const PageLayout = ({ children, header }: IProps) => {
-  return (
-    <Box sx={pageLayoutStyles.containerWrapper}>
-      {header}
-      <CssBaseline />
-      <Container sx={pageLayoutStyles.container}>{children}</Container>
-    </Box>
-  );
+const pageLayoutStyles: Style = {
+  containerWrapper: {
+    display: "flex",
+    flexDirection: "column",
+  },
+  container: {
+    flex: 1,
+  },
 };
+
+export const PageLayout = ({ children, header }: IProps) => (
+  <Box sx={pageLayoutStyles.containerWrapper}>
+    {header}
+    <CssBaseline />
+    <Container sx={pageLayoutStyles.container}>{children}</Container>
+  </Box>
+);

@@ -10,14 +10,15 @@ export const productValidationSchema = {
     [name.name]: yup
       .string()
       .min(3, name.lengthError)
-      .required(name.requiredErrorMsg),
+      .required(name.requiredError),
     [brand.name]: yup
       .string()
-      .min(3, brand.lengthError)
-      .required(brand.requiredErrorMsg),
+      .matches(/(Nike|Adidas|Puma|All Star)/, { message: brand.matchError })
+      .required(brand.requiredError),
     [price.name]: yup
       .number()
-      .min(1, price.numberError)
-      .required(price.requiredErrorMsg),
+      .required(price.requiredError)
+      .positive(price.positiveError)
+      .integer(price.numberError),
   }),
 };
