@@ -15,13 +15,12 @@ export const ProductsTable = ({ products }: IProps) => {
   const { openModal } = useModal();
 
   const handleDeleteClick = useCallback(() => {
-    openModal("deleteModal", { visible: true });
+    openModal("deleteModal", {});
   }, [openModal]);
 
   const handleEditClick = useCallback(
     (product: IProduct) => {
       openModal("upsertModal", {
-        visible: true,
         title: "Edit Product",
         product,
       });

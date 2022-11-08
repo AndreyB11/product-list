@@ -10,7 +10,7 @@ import { Style } from "shared/theme";
 import { useCallback } from "react";
 
 interface IProps {
-  visible: boolean;
+  visible?: boolean;
   onCancel: () => void;
   title: string;
   product?: IProduct;

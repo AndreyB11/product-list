@@ -20,7 +20,7 @@ export const Header = () => {
   const { openModal } = useModal();
 
   const handleOpenClick = useCallback(() => {
-    openModal("upsertModal", { visible: true, title: "Create Product" });
+    openModal("upsertModal", { title: "Create Product" });
   }, [openModal]);
 
   return (
