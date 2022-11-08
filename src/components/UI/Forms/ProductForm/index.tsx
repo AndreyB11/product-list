@@ -103,7 +103,7 @@ export const ProductForm = ({ onSubmit, product }: IProps) => {
           />
           <Button
             disabled={isSubmitting}
-            onClick={() => handleSubmit()}
+            onClick={() => handleSubmit}
             variant="contained"
             sx={productFormStyles.button}
           >

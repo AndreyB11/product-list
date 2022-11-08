@@ -1,33 +1,17 @@
 import { Backdrop, Box, CircularProgress } from "@mui/material";
 import { Header } from "components/Layout/Header";
 import { PageLayout } from "components/Layout/PageLayout";
-import { useModal } from "components/UI/Modals/GenericModal/GenericModalProvider";
 import { ProductsTable } from "components/UI/Tables/ProductsTable";
+import { useErrorModal } from "hooks/useErrorModal";
 import { useProduct } from "hooks/useProduct";
-import { useEffect } from "react";
 
 const HomePage = () => {
-  const { openModal, closeModal } = useModal();
-  const { products, isLoading, isError, error, fetchProducts, cleanError } =
+  const { products, isLoading, isError, error, useFetchProducts, cleanError } =
     useProduct();
 
-  useEffect(() => {
-    fetchProducts();
-  }, [fetchProducts]);
+  useFetchProducts();
 
-  useEffect(() => {
-    if (isError) {
-      openModal("errorModal", {
-        visible: true,
-        message: error!,
-        onCancel: () => {
-          cleanError();
-          closeModal();
-        },
-      });
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isError, error]);
+  useErrorModal(isError, () => cleanError(), error);
 
   return (
     <PageLayout header={<Header />}>

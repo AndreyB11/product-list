@@ -1,4 +1,4 @@
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import { IProduct } from "shared/models";
 import { useAppDispatch, useAppSelector } from "shared/store";
 import {
@@ -20,16 +20,31 @@ export const useProduct = () => {
     dispatch(requestFetchProducts());
   }, [dispatch]);
 
-  const addProduct = (product: Omit<IProduct, "id">) => {
-    dispatch(requestAddProduct(product));
-  };
+  const addProduct = useCallback(
+    (product: Omit<IProduct, "id">) => {
+      dispatch(requestAddProduct(product));
+    },
+    [dispatch]
+  );
 
-  const deleteProduct = (product: IProduct) => {
-    dispatch(requestDeleteProduct(product));
-  };
+  const deleteProduct = useCallback(
+    (product: IProduct) => {
+      dispatch(requestDeleteProduct(product));
+    },
+    [dispatch]
+  );
 
-  const editProduct = (product: IProduct) => {
-    dispatch(requestEditProduct(product));
+  const editProduct = useCallback(
+    (product: IProduct) => {
+      dispatch(requestEditProduct(product));
+    },
+    [dispatch]
+  );
+
+  const useFetchProducts = () => {
+    useEffect(() => {
+      fetchProducts();
+    }, []);
   };
 
   const cleanError = () => {
@@ -41,6 +56,7 @@ export const useProduct = () => {
     isLoading,
     products,
     error,
+    useFetchProducts,
     fetchProducts,
     addProduct,
     deleteProduct,
