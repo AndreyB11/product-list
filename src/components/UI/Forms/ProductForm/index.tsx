@@ -2,16 +2,35 @@ import { Button } from "@mui/material";
 import { Box } from "@mui/system";
 import { InputField } from "components/UI/FormFields/InputField";
 import { Formik } from "formik";
-import { productFormStyles } from "./productFormStyles";
 import {
   formModel,
   initialValues,
   productValidationSchema,
 } from "./validation";
+import { Style } from "shared/theme";
 
 interface IProps {
   onSubmit: (data: any) => void;
 }
+
+export const productFormStyles: Style = {
+  container: {
+    width: "300px",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    m: 5,
+  },
+  field: {
+    backgroundColor: "white",
+    mt: 1,
+  },
+  button: {
+    mt: 1,
+    px: 2,
+    py: 1,
+  },
+};
 
 export const ProductForm = ({ onSubmit }: IProps) => {
   const {
@@ -21,7 +40,7 @@ export const ProductForm = ({ onSubmit }: IProps) => {
   return (
     <Formik
       onSubmit={(data) => {
-        console.log(data);
+        onSubmit(data);
       }}
       initialValues={initialValues}
       validationSchema={productValidationSchema.productForm}
@@ -37,43 +56,40 @@ export const ProductForm = ({ onSubmit }: IProps) => {
       }) => (
         <Box sx={productFormStyles.container}>
           <InputField
+            variant="filled"
             value={values.name}
             isError={Boolean(errors.name && touched.name)}
-            error={errors.name}
-            defaultProps={{
-              sx: productFormStyles.field,
-              fullWidth: true,
-              label: name.label,
-              name: name.name,
-              onChange: handleChange,
-              onBlur: handleBlur,
-            }}
+            errorMessage={errors.name}
+            sx={productFormStyles.field}
+            fullWidth={true}
+            label={name.label}
+            name={name.name}
+            onChange={handleChange}
+            onBlur={handleBlur}
           />
           <InputField
+            variant="filled"
             value={values.price}
             isError={Boolean(errors.price && touched.price)}
-            error={errors.price}
-            defaultProps={{
-              sx: productFormStyles.field,
-              fullWidth: true,
-              label: price.label,
-              name: price.name,
-              onChange: handleChange,
-              onBlur: handleBlur,
-            }}
+            errorMessage={errors.price}
+            sx={productFormStyles.field}
+            fullWidth={true}
+            label={price.label}
+            name={price.name}
+            onChange={handleChange}
+            onBlur={handleBlur}
           />
           <InputField
+            variant="filled"
             value={values.brand}
             isError={Boolean(errors.brand && touched.brand)}
-            error={errors.brand}
-            defaultProps={{
-              sx: productFormStyles.field,
-              fullWidth: true,
-              label: brand.label,
-              name: brand.name,
-              onChange: handleChange,
-              onBlur: handleBlur,
-            }}
+            errorMessage={errors.brand}
+            sx={productFormStyles.field}
+            fullWidth={true}
+            label={brand.label}
+            name={brand.name}
+            onChange={handleChange}
+            onBlur={handleBlur}
           />
           <Button
             disabled={isSubmitting}
@@ -81,7 +97,7 @@ export const ProductForm = ({ onSubmit }: IProps) => {
             variant="contained"
             sx={productFormStyles.button}
           >
-            SUBMIT
+            Submit
           </Button>
         </Box>
       )}
