@@ -3,6 +3,7 @@ import AddIcon from "@mui/icons-material/Add";
 import { globalStyles } from "shared/theme";
 import { Style } from "shared/theme";
 import { useModal } from "components/UI/Modals/GenericModal/GenericModalProvider";
+import { useCallback } from "react";
 
 const headerStyles: Style = {
   header: {
@@ -18,9 +19,9 @@ const headerStyles: Style = {
 export const Header = () => {
   const { openModal } = useModal();
 
-  const handleOpenClick = () => {
+  const handleOpenClick = useCallback(() => {
     openModal("upsertModal", { visible: true, title: "Create Product" });
-  };
+  }, [openModal]);
 
   return (
     <Box sx={headerStyles.header}>

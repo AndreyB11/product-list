@@ -10,6 +10,7 @@ import {
   productValidationSchema,
 } from "./validation";
 import { Style } from "shared/theme";
+import { useCallback } from "react";
 
 interface IProps {
   onSubmit: (
@@ -42,12 +43,12 @@ export const ProductForm = ({ onSubmit, product }: IProps) => {
     formFields: { name, price, brand },
   } = formModel;
 
-  const handleSubmit = (
-    data: FormikValues,
-    actions: FormikHelpers<FormikValues>
-  ) => {
-    onSubmit(data, actions);
-  };
+  const handleSubmit = useCallback(
+    (data: FormikValues, actions: FormikHelpers<FormikValues>) => {
+      onSubmit(data, actions);
+    },
+    [onSubmit]
+  );
 
   return (
     <Formik

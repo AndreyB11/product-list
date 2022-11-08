@@ -5,6 +5,7 @@ import { IProduct } from "shared/models";
 import { useModal } from "components/UI/Modals/GenericModal/GenericModalProvider";
 import { GenericTable } from "../GenericTable";
 import { productTableColumns } from "./productTableColumns";
+import { useCallback } from "react";
 
 interface IProps {
   products: IProduct[];
@@ -13,17 +14,20 @@ interface IProps {
 export const ProductsTable = ({ products }: IProps) => {
   const { openModal } = useModal();
 
-  const handleDeleteClick = () => {
+  const handleDeleteClick = useCallback(() => {
     openModal("deleteModal", { visible: true });
-  };
+  }, [openModal]);
 
-  const handleEditClick = (product: IProduct) => {
-    openModal("upsertModal", {
-      visible: true,
-      title: "Edit Product",
-      product,
-    });
-  };
+  const handleEditClick = useCallback(
+    (product: IProduct) => {
+      openModal("upsertModal", {
+        visible: true,
+        title: "Edit Product",
+        product,
+      });
+    },
+    [openModal]
+  );
 
   return (
     <GenericTable
