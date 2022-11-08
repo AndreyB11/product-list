@@ -58,9 +58,9 @@ export const DeleteModal = ({ visible, onCancel, product }: IProps) => {
       <Grid container sx={deleteModalStyles.innerContainer}>
         <Grid item sx={deleteModalStyles.heading} xs={12}>
           <Typography
-            variant={"h4"}
-            component={"h5"}
-            color={"white"}
+            variant="h4"
+            component="h5"
+            color="white"
             fontWeight={500}
           >
             Alert
