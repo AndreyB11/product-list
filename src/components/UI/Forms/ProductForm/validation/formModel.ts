@@ -2,21 +2,22 @@ export const formModel = {
   formFields: {
     name: {
       name: "name",
-      label: "Name*",
+      label: "Name",
       lengthError: "Should be at least 3 characters",
-      requiredErrorMsg: "Name is required",
+      requiredError: "Name is required",
     },
     brand: {
       name: "brand",
-      label: "Brand*",
-      lengthError: "Brand be at least 3 characters",
-      requiredErrorMsg: "Brand is required",
+      label: "Brand",
+      matchError: "Should be 'Adidas' or 'Nike' or 'Puma'",
+      requiredError: "Brand is required",
     },
     price: {
       name: "price",
-      label: "Price*",
-      numberError: "Should be at least 1",
-      requiredErrorMsg: "Price is required",
+      label: "Price",
+      numberError: "Should be a number",
+      positiveError: "Should be a positive number",
+      requiredError: "Price is required",
     },
   },
 };
