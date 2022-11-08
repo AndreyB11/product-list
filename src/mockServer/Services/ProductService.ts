@@ -1,17 +1,22 @@
 import { IProduct } from "shared/models";
 
-class ProductService {
-  private products: IProduct[] = [];
-  private readonly images: string[] = [
-    "https://cdn.pixabay.com/photo/2020/04/03/19/02/virus-4999857__340.png",
-    "https://cdn.pixabay.com/photo/2017/07/15/21/46/sunflower-2507845__340.png",
-    "https://cdn.pixabay.com/photo/2016/11/15/21/29/illustration-1827583__340.jpg",
-    "https://cdn.pixabay.com/photo/2020/04/30/17/25/monkey-soldier-5113779__340.png",
-  ];
+const images: Record<string, string> = {
+  adidas:
+    "https://1000logos.net/wp-content/uploads/2019/06/Adidas-Logo-1991.jpg",
+  nike: "https://static.nike.com/a/images/f_jpg,q_auto:eco/61b4738b-e1e1-4786-8f6c-26aa0008e80b/swoosh-logo-black.png",
+  puma: "https://1000logos.net/wp-content/uploads/2017/05/PUMA-logo.jpg",
+};
 
-  private getRandomImage(): string {
-    return this.images[Math.floor(Math.random() * (this.images.length - 1))];
-  }
+class ProductService {
+  private products: IProduct[] = [
+    {
+      id: "1",
+      price: "100",
+      name: "Air Force",
+      brand: "Nike",
+      image: images["nike"],
+    },
+  ];
 
   async getAllProducts() {
     return this.products;
@@ -20,7 +25,7 @@ class ProductService {
   async addProduct(product: Omit<IProduct, "id">) {
     const newProduct: IProduct = {
       ...product,
-      image: this.getRandomImage(),
+      image: images[product.brand.toLocaleLowerCase() || "adidas"],
       id: String(Math.floor(Math.random() * 100)),
     };
 
@@ -34,7 +39,10 @@ class ProductService {
 
     if (!newProduct) throw new Error("Product not found");
 
-    Object.assign(newProduct, oldProduct);
+    Object.assign(newProduct, {
+      ...oldProduct,
+      image: images[oldProduct.brand.toLocaleLowerCase() || "adidas"],
+    });
     return newProduct;
   }
 

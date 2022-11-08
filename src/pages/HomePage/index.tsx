@@ -3,23 +3,16 @@ import { Header } from "components/Layout/Header";
 import { PageLayout } from "components/Layout/PageLayout";
 import { useModal } from "components/UI/Modals/GenericModal/GenericModalProvider";
 import { ProductsTable } from "components/UI/Tables/ProductsTable";
+import { useProduct } from "hooks/useProduct";
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  requestProducts,
-  setError,
-} from "shared/store/reducers/productReducer";
-import { selectProductState } from "shared/store/selectors";
 
 const HomePage = () => {
-  const { products, isLoading, isError, error } =
-    useSelector(selectProductState);
   const { openModal, closeModal } = useModal();
-  const dispatch = useDispatch();
+  const { products, isLoading, isError, error, fetchProducts } = useProduct();
 
   useEffect(() => {
-    dispatch(requestProducts());
-  }, [dispatch]);
+    fetchProducts();
+  }, [fetchProducts]);
 
   useEffect(() => {
     if (isError) {

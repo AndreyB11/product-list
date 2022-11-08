@@ -1,4 +1,3 @@
-import React from "react";
 import { Theme } from "@mui/system";
 import { Modal, Box, SxProps, Fade } from "@mui/material";
 
@@ -14,14 +13,12 @@ export const GenericModal = ({
   visible,
   onCancel,
   modalStyles,
-}: IProps) => {
-  return (
-    <div>
-      <Modal open={visible} onClose={onCancel}>
-        <Fade in={visible} timeout={100}>
-          <Box sx={modalStyles}>{children}</Box>
-        </Fade>
-      </Modal>
-    </div>
-  );
-};
+}: IProps) => (
+  <div>
+    <Modal open={visible} onClose={onCancel}>
+      <Fade in={visible} timeout={100}>
+        <Box sx={modalStyles}>{children}</Box>
+      </Fade>
+    </Modal>
+  </div>
+);

@@ -1,4 +1,3 @@
-import React from "react";
 import {
   TableContainer,
   Paper,
@@ -10,7 +9,7 @@ import {
 } from "@mui/material";
 
 export interface IGenericTableColumn {
-  key: string;
+  id: string;
   name: string;
   width?: string;
 }
@@ -22,30 +21,28 @@ interface IProps<T> {
   data: T[];
 }
 
-export const GenericTable = <T extends unknown>({
+export const GenericTable = <T extends object>({
   columns,
   data,
   renderRow,
   keyExtractor,
-}: IProps<T>) => {
-  return (
-    <TableContainer component={Paper} sx={{ maxWidth: "800px" }}>
-      <Table>
-        <TableHead>
-          <TableRow>
-            {columns.map(({ key, name, width }) => (
-              <TableCell key={key} sx={width ? { width } : {}}>
-                {name}
-              </TableCell>
-            ))}
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {data.map((item) => (
-            <TableRow key={keyExtractor(item)}>{renderRow(item)}</TableRow>
+}: IProps<T>) => (
+  <TableContainer component={Paper} sx={{ maxWidth: "800px" }}>
+    <Table>
+      <TableHead>
+        <TableRow>
+          {columns.map(({ id, name, width }) => (
+            <TableCell key={id} sx={width ? { width } : {}}>
+              {name}
+            </TableCell>
           ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
-  );
-};
+        </TableRow>
+      </TableHead>
+      <TableBody>
+        {data.map((item) => (
+          <TableRow key={keyExtractor(item)}>{renderRow(item)}</TableRow>
+        ))}
+      </TableBody>
+    </Table>
+  </TableContainer>
+);
