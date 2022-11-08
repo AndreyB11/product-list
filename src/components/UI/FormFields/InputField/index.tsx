@@ -3,7 +3,7 @@ import { FieldError } from "../FieldError";
 
 interface IProps extends FilledTextFieldProps {
   value: any;
-  isError?: boolean;
+  isError: boolean;
   errorMessage?: string;
 }
 
