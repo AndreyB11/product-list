@@ -40,18 +40,15 @@ export const useProduct = () => {
     [dispatch]
   );
 
-  const useFetchProducts = () => {
-    useEffect(() => {
-      fetchProducts();
-    }, []);
-  };
+  useEffect(() => {
+    fetchProducts();
+  }, [fetchProducts]);
 
   return {
     isError,
     isLoading,
     products,
     error,
-    useFetchProducts,
     fetchProducts,
     addProduct,
     deleteProduct,

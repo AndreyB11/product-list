@@ -4,9 +4,7 @@ import { ProductsTable } from "components/UI/Tables/ProductsTable";
 import { useProduct } from "hooks/useProduct";
 
 const HomePage = () => {
-  const { products, useFetchProducts } = useProduct();
-
-  useFetchProducts();
+  const { products } = useProduct();
 
   return (
     <PageLayout header={<Header />}>
