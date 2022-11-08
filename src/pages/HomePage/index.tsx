@@ -2,14 +2,11 @@ import { Header } from "components/Layout/Header";
 import { PageLayout } from "components/Layout/PageLayout";
 import { ProductsTable } from "components/UI/Tables/ProductsTable";
 import { useProduct } from "hooks/useProduct";
-import { useEffect } from "react";
 
 const HomePage = () => {
-  const { products, fetchProducts } = useProduct();
+  const { products, useFetchProducts } = useProduct();
 
-  useEffect(() => {
-    fetchProducts();
-  }, [fetchProducts]);
+  useFetchProducts();
 
   return (
     <PageLayout header={<Header />}>
