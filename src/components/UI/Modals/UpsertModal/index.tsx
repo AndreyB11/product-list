@@ -6,11 +6,7 @@ import { upsertModalStyles } from "./upsertModalStyles";
 import { ProductForm } from "components/UI/Forms/ProductForm";
 import { IProduct } from "shared/models";
 import { FormikHelpers, FormikValues } from "formik";
-import { useDispatch } from "react-redux";
-import {
-  requestAddProduct,
-  requestEditProduct,
-} from "shared/store/reducers/productReducer";
+import { useProduct } from "hooks/useProduct";
 
 interface IProps {
   visible: boolean;
@@ -20,7 +16,7 @@ interface IProps {
 }
 
 export const UpsertModal = ({ visible, onCancel, title, product }: IProps) => {
-  const dispatch = useDispatch();
+  const { editProduct, addProduct } = useProduct();
 
   const onSubmit = (
     values: FormikValues,
@@ -30,24 +26,20 @@ export const UpsertModal = ({ visible, onCancel, title, product }: IProps) => {
     actions.setSubmitting(true);
 
     if (product) {
-      dispatch(
-        requestEditProduct({
-          id: product.id,
-          brand: values.brand,
-          image: product.image,
-          name: values.name,
-          price: values.price,
-        })
-      );
+      editProduct({
+        id: product.id,
+        brand: values.brand,
+        image: product.image,
+        name: values.name,
+        price: values.price,
+      });
     } else {
-      dispatch(
-        requestAddProduct({
-          brand: values.brand,
-          image: "",
-          name: values.name,
-          price: values.price,
-        })
-      );
+      addProduct({
+        brand: values.brand,
+        image: "",
+        name: values.name,
+        price: values.price,
+      });
     }
 
     actions.setSubmitting(false);
@@ -63,9 +55,9 @@ export const UpsertModal = ({ visible, onCancel, title, product }: IProps) => {
       <Grid container sx={upsertModalStyles.innerContainer}>
         <Grid item sx={upsertModalStyles.heading} xs={12}>
           <Typography
-            variant={"h4"}
-            component={"h5"}
-            color={"white"}
+            variant="h4"
+            component="h5"
+            color="white"
             fontWeight={500}
           >
             {title}

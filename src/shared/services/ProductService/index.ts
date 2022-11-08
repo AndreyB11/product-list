@@ -14,7 +14,7 @@ export class ProductService {
     ];
   }
 
-  static addProduct(product: IProduct) {}
+  static addProduct(product: Omit<IProduct, "id">) {}
 
   static editProduct(product: IProduct) {}
 

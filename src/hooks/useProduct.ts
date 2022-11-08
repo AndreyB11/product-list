@@ -1,3 +1,4 @@
+import { useCallback } from "react";
 import { IProduct } from "shared/models";
 import { useAppDispatch, useAppSelector } from "shared/store";
 import {
@@ -10,13 +11,15 @@ import { selectProductState } from "shared/store/selectors";
 
 export const useProduct = () => {
   const dispatch = useAppDispatch();
-  const products = selectProductState(useAppSelector((state) => state));
+  const { isError, isLoading, products, error } = selectProductState(
+    useAppSelector((state) => state)
+  );
 
-  const fetchProducts = () => {
+  const fetchProducts = useCallback(() => {
     dispatch(requestFetchProducts());
-  };
+  }, [dispatch]);
 
-  const addProduct = (product: IProduct) => {
+  const addProduct = (product: Omit<IProduct, "id">) => {
     dispatch(requestAddProduct(product));
   };
 
@@ -29,7 +32,10 @@ export const useProduct = () => {
   };
 
   return {
+    isError,
+    isLoading,
     products,
+    error,
     fetchProducts,
     addProduct,
     deleteProduct,
