@@ -1,16 +1,23 @@
 import { Button } from "@mui/material";
 import { Box } from "@mui/system";
 import { InputField } from "components/UI/FormFields/InputField";
-import { Formik } from "formik";
+import { Formik, FormikValues } from "formik";
 import {
   formModel,
   initialValues,
   productValidationSchema,
 } from "./validation";
 import { Style } from "shared/theme";
+import { Brand } from "shared/models/brand";
+
+interface IProductFormData {
+  name: string;
+  brand: Brand;
+  price: string;
+}
 
 interface IProps {
-  onSubmit: (data: any) => void;
+  onSubmit: (data: IProductFormData) => void;
 }
 
 export const productFormStyles: Style = {
@@ -37,11 +44,17 @@ export const ProductForm = ({ onSubmit }: IProps) => {
     formFields: { name, price, brand },
   } = formModel;
 
+  const handleSubmit = (data: FormikValues) => {
+    onSubmit({
+      name: data.name,
+      brand: data.brand,
+      price: data.price,
+    });
+  };
+
   return (
     <Formik
-      onSubmit={(data) => {
-        onSubmit(data);
-      }}
+      onSubmit={handleSubmit}
       initialValues={initialValues}
       validationSchema={productValidationSchema.productForm}
     >
