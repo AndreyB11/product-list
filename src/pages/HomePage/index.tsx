@@ -8,7 +8,8 @@ import { useEffect } from "react";
 
 const HomePage = () => {
   const { openModal, closeModal } = useModal();
-  const { products, isLoading, isError, error, fetchProducts } = useProduct();
+  const { products, isLoading, isError, error, fetchProducts, cleanError } =
+    useProduct();
 
   useEffect(() => {
     fetchProducts();
@@ -18,9 +19,9 @@ const HomePage = () => {
     if (isError) {
       openModal("errorModal", {
         visible: true,
-        message: error,
+        message: error!,
         onCancel: () => {
-          dispatch(setError(""));
+          cleanError();
           closeModal();
         },
       });

@@ -6,6 +6,7 @@ import {
   requestFetchProducts,
   requestDeleteProduct,
   requestEditProduct,
+  clearError,
 } from "shared/store/actions/products";
 import { selectProductState } from "shared/store/selectors";
 
@@ -31,6 +32,10 @@ export const useProduct = () => {
     dispatch(requestEditProduct(product));
   };
 
+  const cleanError = () => {
+    dispatch(clearError());
+  };
+
   return {
     isError,
     isLoading,
@@ -40,5 +45,6 @@ export const useProduct = () => {
     addProduct,
     deleteProduct,
     editProduct,
+    cleanError,
   };
 };

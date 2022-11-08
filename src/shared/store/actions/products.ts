@@ -74,5 +74,5 @@ export const deleteProductFailed = (error: string) => ({
 });
 
 export const clearError = () => ({
-  type: PRODUCT_ACTIONS.CLEAR_ERROR,
+  type: PRODUCT_ACTIONS.CLEAR_ERROR as const,
 });
