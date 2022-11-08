@@ -7,9 +7,10 @@ import { IProduct } from "shared/models";
 import { FormikHelpers, FormikValues } from "formik";
 import { useProduct } from "hooks/useProduct";
 import { Style } from "shared/theme";
+import { useCallback } from "react";
 
 interface IProps {
-  visible: boolean;
+  visible?: boolean;
   onCancel: () => void;
   title: string;
   product?: IProduct;
@@ -47,33 +48,33 @@ export const upsertModalStyles: Style = {
 export const UpsertModal = ({ visible, onCancel, title, product }: IProps) => {
   const { editProduct, addProduct } = useProduct();
 
-  const onSubmit = (
-    values: FormikValues,
-    actions: FormikHelpers<FormikValues>
-  ) => {
-    actions.setTouched({});
-    actions.setSubmitting(true);
+  const onSubmit = useCallback(
+    (values: FormikValues, actions: FormikHelpers<FormikValues>) => {
+      actions.setTouched({});
+      actions.setSubmitting(true);
 
-    if (product) {
-      editProduct({
-        id: product.id,
-        brand: values.brand,
-        image: product.image,
-        name: values.name,
-        price: values.price,
-      });
-    } else {
-      addProduct({
-        brand: values.brand,
-        image: "",
-        name: values.name,
-        price: values.price,
-      });
-    }
+      if (product) {
+        editProduct({
+          id: product.id,
+          brand: values.brand,
+          image: product.image,
+          name: values.name,
+          price: values.price,
+        });
+      } else {
+        addProduct({
+          brand: values.brand,
+          image: "",
+          name: values.name,
+          price: values.price,
+        });
+      }
 
-    actions.setSubmitting(false);
-    onCancel();
-  };
+      actions.setSubmitting(false);
+      onCancel();
+    },
+    [addProduct, editProduct, onCancel, product]
+  );
 
   return (
     <GenericModal

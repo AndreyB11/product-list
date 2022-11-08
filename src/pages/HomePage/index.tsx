@@ -6,10 +6,7 @@ import { useErrorModal } from "hooks/useErrorModal";
 import { useProduct } from "hooks/useProduct";
 
 const HomePage = () => {
-  const { products, isLoading, isError, error, useFetchProducts, cleanError } =
-    useProduct();
-
-  useFetchProducts();
+  const { products, isLoading, isError, error, cleanError } = useProduct();
 
   useErrorModal(isError, () => cleanError(), error);
 

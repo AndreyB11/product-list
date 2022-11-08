@@ -7,7 +7,7 @@ import { IProduct } from "shared/models";
 import { useProduct } from "hooks/useProduct";
 
 interface IProps {
-  visible: boolean;
+  visible?: boolean;
   onCancel: () => void;
   product: IProduct;
 }

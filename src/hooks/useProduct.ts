@@ -41,22 +41,19 @@ export const useProduct = () => {
     [dispatch]
   );
 
-  const useFetchProducts = () => {
-    useEffect(() => {
-      fetchProducts();
-    }, []);
-  };
-
-  const cleanError = () => {
+  const cleanError = useCallback(() => {
     dispatch(clearError());
-  };
+  }, [dispatch]);
+
+  useEffect(() => {
+    fetchProducts();
+  }, [fetchProducts]);
 
   return {
     isError,
     isLoading,
     products,
     error,
-    useFetchProducts,
     fetchProducts,
     addProduct,
     deleteProduct,
