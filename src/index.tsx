@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { App } from "./components/App";
-import { worker } from "./mocks/browser";
+import { worker } from "mockServer";
 import "./index.scss";
 
 const createApp = async () => {

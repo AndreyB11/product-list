@@ -1,4 +1,4 @@
-import ProductService from "mocks/Services/ProductService";
+import ProductService from "mockServer/Services/ProductService";
 import { RestRequest, RestContext, ResponseFunction } from "msw";
 import { IProduct } from "shared/models";
 

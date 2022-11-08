@@ -1,7 +1,7 @@
+import { ProductController } from "mockServer/Controllers/ProductController";
 import { rest } from "msw";
-import { ProductController } from "./Controllers/ProductController";
 
-export const handlers = [
+export const productRoutes = [
   rest.get("/products", ProductController.getAll),
   rest.post("/products", ProductController.addProduct),
   rest.put("/products/:id", ProductController.editProduct),
