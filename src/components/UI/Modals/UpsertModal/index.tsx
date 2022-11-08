@@ -2,11 +2,11 @@ import { Grid, IconButton, Typography } from "@mui/material";
 import { GenericModal } from "../GenericModal";
 import CloseIcon from "@mui/icons-material/Close";
 import { globalStyles } from "shared/theme";
-import { upsertModalStyles } from "./upsertModalStyles";
 import { ProductForm } from "components/UI/Forms/ProductForm";
 import { IProduct } from "shared/models";
 import { FormikHelpers, FormikValues } from "formik";
 import { useProduct } from "hooks/useProduct";
+import { Style } from "shared/theme";
 
 interface IProps {
   visible: boolean;
@@ -14,6 +14,35 @@ interface IProps {
   title: string;
   product?: IProduct;
 }
+
+export const upsertModalStyles: Style = {
+  modal: {
+    position: "absolute",
+    top: "45%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    bgcolor: "white",
+    width: "350px",
+    height: "500px",
+    boxShadow: 24,
+    outline: "none",
+  },
+  innerContainer: {
+    textAlign: "center",
+    display: "flex",
+    flexDirection: "column",
+  },
+  heading: {
+    backgroundColor: "#191a19",
+    py: 2,
+    mb: 2,
+  },
+  icon: {
+    position: "absolute",
+    right: 4,
+    top: 5,
+  },
+};
 
 export const UpsertModal = ({ visible, onCancel, title, product }: IProps) => {
   const { editProduct, addProduct } = useProduct();
