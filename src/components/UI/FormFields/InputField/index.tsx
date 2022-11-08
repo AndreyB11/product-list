@@ -4,7 +4,7 @@ import { FieldError } from "../FieldError";
 interface IProps extends FilledTextFieldProps {
   value: any;
   isError: boolean;
-  errorMessage: string;
+  errorMessage?: string;
 }
 
 export const InputField = ({

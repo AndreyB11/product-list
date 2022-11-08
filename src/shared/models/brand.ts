@@ -1,1 +1,1 @@
-export type Brand = "Nike" | "Adidas" | "Puma" | "All Star";
+export type Brand = "Nike" | "Adidas" | "Puma";
