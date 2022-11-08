@@ -15,7 +15,7 @@ export const GenericModal = ({
   modalStyles,
 }: IProps) => (
   <div>
-    <Modal open={visible ? visible : true} onClose={onCancel}>
+    <Modal open={visible} onClose={onCancel}>
       <Fade in={visible} timeout={100}>
         <Box sx={modalStyles}>{children}</Box>
       </Fade>
