@@ -43,7 +43,7 @@ export const ProductForm = ({ onSubmit, product }: IProps) => {
     formFields: { name, price, brand },
   } = formModel;
 
-  const handleSubmit = useCallback(
+  const handleFormSubmit = useCallback(
     (data: FormikValues, actions: FormikHelpers<FormikValues>) => {
       onSubmit(data, actions);
     },
@@ -52,7 +52,7 @@ export const ProductForm = ({ onSubmit, product }: IProps) => {
 
   return (
     <Formik
-      onSubmit={handleSubmit}
+      onSubmit={handleFormSubmit}
       initialValues={product ? initFromProduct(product) : initialValues}
       validationSchema={productValidationSchema.productForm}
     >
@@ -104,7 +104,7 @@ export const ProductForm = ({ onSubmit, product }: IProps) => {
           />
           <Button
             disabled={isSubmitting}
-            onClick={() => handleSubmit}
+            onClick={() => handleSubmit()}
             variant="contained"
             sx={productFormStyles.button}
           >
