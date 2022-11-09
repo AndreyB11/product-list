@@ -3,13 +3,9 @@ import { RestRequest, RestContext, ResponseFunction } from "msw";
 import { IProduct } from "shared/models";
 
 export class ProductController {
-  static async getAll(
-    req: RestRequest,
-    res: ResponseFunction,
-    ctx: RestContext
-  ) {
+  static getAll(req: RestRequest, res: ResponseFunction, ctx: RestContext) {
     try {
-      const products = await ProductService.getAllProducts();
+      const products = ProductService.getAllProducts();
 
       return res(ctx.status(200), ctx.json(products));
     } catch (err) {
@@ -27,7 +23,7 @@ export class ProductController {
   ) {
     try {
       const body: Omit<IProduct, "id"> = await req.json();
-      const product = await ProductService.addProduct(body);
+      const product = ProductService.addProduct(body);
 
       return res(ctx.status(200), ctx.json(product));
     } catch (err) {
@@ -44,12 +40,9 @@ export class ProductController {
     ctx: RestContext
   ) {
     try {
-      const id = req.params["id"];
+      const id = req.params["id"].toString();
       const product: IProduct = await req.json();
-      const newProduct = await ProductService.editProduct(
-        id as string,
-        product
-      );
+      const newProduct = ProductService.editProduct(id, product);
 
       return res(ctx.status(200), ctx.json(newProduct));
     } catch (err) {
@@ -60,14 +53,14 @@ export class ProductController {
     }
   }
 
-  static async deleteProduct(
+  static deleteProduct(
     req: RestRequest,
     res: ResponseFunction,
     ctx: RestContext
   ) {
     try {
-      const id = req.params["id"];
-      await ProductService.deleteProduct(id as string);
+      const id = req.params["id"].toString();
+      ProductService.deleteProduct(id);
 
       return res(ctx.status(200));
     } catch (err) {
