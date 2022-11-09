@@ -4,13 +4,14 @@ import { PageLayout } from "components/Layout/PageLayout";
 import { ProductsTable } from "components/UI/Tables/ProductsTable";
 import { useErrorModal } from "hooks/useErrorModal";
 import { useProduct } from "hooks/useProduct";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 
 const HomePage = () => {
   const { products, isLoading, isError, error, cleanError, fetchProducts } =
     useProduct();
+  const cleanAfterClose = useCallback(() => cleanError(), [cleanError]);
 
-  useErrorModal(isError, () => cleanError(), error);
+  useErrorModal(isError, cleanAfterClose, error);
 
   useEffect(() => {
     fetchProducts();

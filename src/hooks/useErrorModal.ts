@@ -19,6 +19,5 @@ export const useErrorModal = (
         },
       });
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [errorCondition]);
+  }, [errorCondition, beforeClose, errorMessage, openModal, closeModal]);
 };
