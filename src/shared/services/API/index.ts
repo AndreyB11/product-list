@@ -1,5 +1,6 @@
 import axios, { AxiosRequestConfig } from "axios";
-import { API_URL } from "shared/constants";
+
+export const API_URL = "http://localhost:3000";
 
 const axiosConfig: AxiosRequestConfig = {
   baseURL: API_URL,

@@ -4,11 +4,17 @@ import { PageLayout } from "components/Layout/PageLayout";
 import { ProductsTable } from "components/UI/Tables/ProductsTable";
 import { useErrorModal } from "hooks/useErrorModal";
 import { useProduct } from "hooks/useProduct";
+import { useEffect } from "react";
 
 const HomePage = () => {
-  const { products, isLoading, isError, error, cleanError } = useProduct();
+  const { products, isLoading, isError, error, cleanError, fetchProducts } =
+    useProduct();
 
   useErrorModal(isError, () => cleanError(), error);
+
+  useEffect(() => {
+    fetchProducts();
+  }, [fetchProducts]);
 
   return (
     <PageLayout header={<Header />}>

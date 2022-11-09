@@ -5,6 +5,7 @@ import { Style } from "shared/theme";
 import { globalStyles } from "shared/theme";
 import { IProduct } from "shared/models";
 import { useProduct } from "hooks/useProduct";
+import { useCallback } from "react";
 
 interface IProps {
   visible?: boolean;
@@ -44,10 +45,10 @@ const deleteModalStyles: Style = {
 export const DeleteModal = ({ visible, onCancel, product }: IProps) => {
   const { deleteProduct } = useProduct();
 
-  const handleDelete = () => {
+  const handleDelete = useCallback(() => {
     deleteProduct(product);
     onCancel();
-  };
+  }, [deleteProduct, onCancel, product]);
 
   return (
     <GenericModal

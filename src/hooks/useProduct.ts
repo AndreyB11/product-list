@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from "react";
+import { useCallback } from "react";
 import { IProduct } from "shared/models";
 import { useAppDispatch, useAppSelector } from "shared/store";
 import {
@@ -44,10 +44,6 @@ export const useProduct = () => {
   const cleanError = useCallback(() => {
     dispatch(clearError());
   }, [dispatch]);
-
-  useEffect(() => {
-    fetchProducts();
-  }, [fetchProducts]);
 
   return {
     isError,

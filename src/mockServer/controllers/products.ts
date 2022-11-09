@@ -1,15 +1,19 @@
-import ProductService from "mockServer/Services/ProductService";
+import ProductService from "mockServer/services/products";
 import { RestRequest, RestContext, ResponseFunction } from "msw";
 import { IProduct } from "shared/models";
 
+interface IProductError {
+  message: string;
+}
+
 export class ProductController {
-  static async getAll(
-    req: RestRequest,
-    res: ResponseFunction,
+  static getAll(
+    req: RestRequest<IProduct[]>,
+    res: ResponseFunction<IProduct[] | IProductError>,
     ctx: RestContext
   ) {
     try {
-      const products = await ProductService.getAllProducts();
+      const products = ProductService.getAllProducts();
 
       return res(ctx.status(200), ctx.json(products));
     } catch (err) {
@@ -21,13 +25,13 @@ export class ProductController {
   }
 
   static async addProduct(
-    req: RestRequest,
-    res: ResponseFunction,
+    req: RestRequest<Omit<IProduct, "id">>,
+    res: ResponseFunction<IProduct | IProductError>,
     ctx: RestContext
   ) {
     try {
       const body: Omit<IProduct, "id"> = await req.json();
-      const product = await ProductService.addProduct(body);
+      const product = ProductService.addProduct(body);
 
       return res(ctx.status(200), ctx.json(product));
     } catch (err) {
@@ -39,17 +43,14 @@ export class ProductController {
   }
 
   static async editProduct(
-    req: RestRequest,
-    res: ResponseFunction,
+    req: RestRequest<IProduct, { id: string }>,
+    res: ResponseFunction<IProduct | IProductError>,
     ctx: RestContext
   ) {
     try {
-      const id = req.params["id"];
+      const id = req.params["id"].toString();
       const product: IProduct = await req.json();
-      const newProduct = await ProductService.editProduct(
-        id as string,
-        product
-      );
+      const newProduct = ProductService.editProduct(id, product);
 
       return res(ctx.status(200), ctx.json(newProduct));
     } catch (err) {
@@ -60,14 +61,14 @@ export class ProductController {
     }
   }
 
-  static async deleteProduct(
-    req: RestRequest,
-    res: ResponseFunction,
+  static deleteProduct(
+    req: RestRequest<IProduct, { id: string }>,
+    res: ResponseFunction<IProduct | IProductError>,
     ctx: RestContext
   ) {
     try {
-      const id = req.params["id"];
-      await ProductService.deleteProduct(id as string);
+      const id = req.params.id;
+      ProductService.deleteProduct(id);
 
       return res(ctx.status(200));
     } catch (err) {
