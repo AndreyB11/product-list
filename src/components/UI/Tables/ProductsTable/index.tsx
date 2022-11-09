@@ -5,6 +5,7 @@ import { IProduct } from "shared/models";
 import { useModal } from "components/UI/Modals/GenericModal/GenericModalProvider";
 import { GenericTable } from "../GenericTable";
 import { productTableColumns } from "./productTableColumns";
+import { useCallback } from "react";
 
 interface IProps {
   products: IProduct[];
@@ -13,26 +14,36 @@ interface IProps {
 export const ProductsTable = ({ products }: IProps) => {
   const { openModal } = useModal();
 
-  const handleDeleteClick = () => {
-    openModal("deleteModal", { visible: true });
-  };
+  const handleDeleteClick = useCallback(() => {
+    openModal("deleteModal", {});
+  }, [openModal]);
+
+  const handleEditClick = useCallback(
+    (product: IProduct) => {
+      openModal("upsertModal", {
+        title: "Edit Product",
+        product,
+      });
+    },
+    [openModal]
+  );
 
   return (
     <GenericTable
       columns={productTableColumns}
       data={products}
       keyExtractor={({ id }) => id}
-      renderRow={({ id, name, brand, price, image }) => (
+      renderRow={(product) => (
         <>
-          <TableCell>{id}</TableCell>
-          <TableCell>{name}</TableCell>
-          <TableCell>{brand}</TableCell>
-          <TableCell>{price}</TableCell>
+          <TableCell>{product.id}</TableCell>
+          <TableCell>{product.name}</TableCell>
+          <TableCell>{product.brand}</TableCell>
+          <TableCell>{product.price}</TableCell>
           <TableCell>
-            <Avatar src={image} />
+            <Avatar src={product.image} />
           </TableCell>
           <TableCell align="left">
-            <IconButton>
+            <IconButton onClick={() => handleEditClick(product)}>
               <EditIcon color="primary" />
             </IconButton>
             <IconButton onClick={handleDeleteClick}>

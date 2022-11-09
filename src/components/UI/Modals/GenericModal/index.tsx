@@ -3,7 +3,7 @@ import { Modal, Box, SxProps, Fade } from "@mui/material";
 
 interface IProps {
   children: React.ReactNode;
-  visible: boolean;
+  visible?: boolean;
   onCancel: () => void;
   modalStyles: SxProps<Theme>;
 }
@@ -15,7 +15,7 @@ export const GenericModal = ({
   modalStyles,
 }: IProps) => (
   <div>
-    <Modal open={visible} onClose={onCancel}>
+    <Modal open={!!visible} onClose={onCancel}>
       <Fade in={visible} timeout={100}>
         <Box sx={modalStyles}>{children}</Box>
       </Fade>

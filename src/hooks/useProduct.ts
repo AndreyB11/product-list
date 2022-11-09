@@ -1,3 +1,4 @@
+import { useCallback } from "react";
 import { IProduct } from "shared/models";
 import { useAppDispatch, useAppSelector } from "shared/store";
 import {
@@ -10,26 +11,40 @@ import { selectProductState } from "shared/store/selectors";
 
 export const useProduct = () => {
   const dispatch = useAppDispatch();
-  const products = selectProductState(useAppSelector((state) => state));
+  const { isError, isLoading, products, error } = selectProductState(
+    useAppSelector((state) => state)
+  );
 
-  const fetchProducts = () => {
+  const fetchProducts = useCallback(() => {
     dispatch(requestFetchProducts());
-  };
+  }, [dispatch]);
 
-  const addProduct = (product: IProduct) => {
-    dispatch(requestAddProduct(product));
-  };
+  const addProduct = useCallback(
+    (product: Omit<IProduct, "id">) => {
+      dispatch(requestAddProduct(product));
+    },
+    [dispatch]
+  );
 
-  const deleteProduct = (product: IProduct) => {
-    dispatch(requestDeleteProduct(product));
-  };
+  const deleteProduct = useCallback(
+    (product: IProduct) => {
+      dispatch(requestDeleteProduct(product));
+    },
+    [dispatch]
+  );
 
-  const editProduct = (product: IProduct) => {
-    dispatch(requestEditProduct(product));
-  };
+  const editProduct = useCallback(
+    (product: IProduct) => {
+      dispatch(requestEditProduct(product));
+    },
+    [dispatch]
+  );
 
   return {
+    isError,
+    isLoading,
     products,
+    error,
     fetchProducts,
     addProduct,
     deleteProduct,

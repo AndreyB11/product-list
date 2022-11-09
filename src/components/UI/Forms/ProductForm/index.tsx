@@ -1,32 +1,31 @@
 import { Button } from "@mui/material";
 import { Box } from "@mui/system";
 import { InputField } from "components/UI/FormFields/InputField";
-import { Formik, FormikValues } from "formik";
+import { Formik, FormikHelpers, FormikValues } from "formik";
+import { IProduct } from "shared/models";
 import {
   formModel,
+  initFromProduct,
   initialValues,
   productValidationSchema,
 } from "./validation";
 import { Style } from "shared/theme";
-import { Brand } from "shared/models/brand";
-
-interface IProductFormData {
-  name: string;
-  brand: Brand;
-  price: string;
-}
+import { useCallback } from "react";
 
 interface IProps {
-  onSubmit: (data: IProductFormData) => void;
+  onSubmit: (
+    values: FormikValues,
+    actions: FormikHelpers<FormikValues>
+  ) => void;
+  product?: IProduct;
 }
 
 export const productFormStyles: Style = {
   container: {
-    width: "300px",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    m: 5,
+    m: 2,
   },
   field: {
     backgroundColor: "white",
@@ -39,23 +38,22 @@ export const productFormStyles: Style = {
   },
 };
 
-export const ProductForm = ({ onSubmit }: IProps) => {
+export const ProductForm = ({ onSubmit, product }: IProps) => {
   const {
     formFields: { name, price, brand },
   } = formModel;
 
-  const handleSubmit = (data: FormikValues) => {
-    onSubmit({
-      name: data.name,
-      brand: data.brand,
-      price: data.price,
-    });
-  };
+  const handleFormSubmit = useCallback(
+    (data: FormikValues, actions: FormikHelpers<FormikValues>) => {
+      onSubmit(data, actions);
+    },
+    [onSubmit]
+  );
 
   return (
     <Formik
-      onSubmit={handleSubmit}
-      initialValues={initialValues}
+      onSubmit={handleFormSubmit}
+      initialValues={product ? initFromProduct(product) : initialValues}
       validationSchema={productValidationSchema.productForm}
     >
       {({

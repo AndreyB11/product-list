@@ -2,6 +2,8 @@ import { Box, IconButton, Typography } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import { globalStyles } from "shared/theme";
 import { Style } from "shared/theme";
+import { useModal } from "components/UI/Modals/GenericModal/GenericModalProvider";
+import { useCallback } from "react";
 
 const headerStyles: Style = {
   header: {
@@ -14,13 +16,21 @@ const headerStyles: Style = {
   },
 };
 
-export const Header = () => (
-  <Box sx={headerStyles.header}>
-    <Typography variant="h3" component="h1" color="white">
-      Product List
-    </Typography>
-    <IconButton size="large">
-      <AddIcon sx={globalStyles.whiteColor} />
-    </IconButton>
-  </Box>
-);
+export const Header = () => {
+  const { openModal } = useModal();
+
+  const handleOpenClick = useCallback(() => {
+    openModal("upsertModal", { title: "Create Product" });
+  }, [openModal]);
+
+  return (
+    <Box sx={headerStyles.header}>
+      <Typography variant="h3" component="h1" color="white">
+        Product List
+      </Typography>
+      <IconButton size="large" onClick={handleOpenClick}>
+        <AddIcon sx={globalStyles.whiteColor} />
+      </IconButton>
+    </Box>
+  );
+};

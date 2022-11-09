@@ -1,3 +1,4 @@
+import { IProduct } from "shared/models";
 import { formModel } from "./formModel";
 
 const {
@@ -9,3 +10,9 @@ export const initialValues = {
   [price.name]: "",
   [brand.name]: "",
 };
+
+export const initFromProduct = (product: IProduct) => ({
+  [name.name]: product.name,
+  [price.name]: product.price,
+  [brand.name]: product.brand,
+});

@@ -19,7 +19,7 @@ export const fetchProductsFailed = (error: string) => ({
   payload: error,
 });
 
-export const requestAddProduct = (product: IProduct) => ({
+export const requestAddProduct = (product: Omit<IProduct, "id">) => ({
   type: PRODUCT_ACTIONS.REQUEST_ADD_PRODUCT as const,
   payload: product,
 });
