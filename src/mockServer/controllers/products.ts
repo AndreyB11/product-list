@@ -2,8 +2,16 @@ import ProductService from "mockServer/services/products";
 import { RestRequest, RestContext, ResponseFunction } from "msw";
 import { IProduct } from "shared/models";
 
+interface IProductError {
+  message: string;
+}
+
 export class ProductController {
-  static getAll(req: RestRequest, res: ResponseFunction, ctx: RestContext) {
+  static getAll(
+    req: RestRequest<IProduct[]>,
+    res: ResponseFunction<IProduct[] | IProductError>,
+    ctx: RestContext
+  ) {
     try {
       const products = ProductService.getAllProducts();
 
@@ -17,8 +25,8 @@ export class ProductController {
   }
 
   static async addProduct(
-    req: RestRequest,
-    res: ResponseFunction,
+    req: RestRequest<Omit<IProduct, "id">>,
+    res: ResponseFunction<IProduct | IProductError>,
     ctx: RestContext
   ) {
     try {
@@ -35,8 +43,8 @@ export class ProductController {
   }
 
   static async editProduct(
-    req: RestRequest,
-    res: ResponseFunction,
+    req: RestRequest<IProduct, { id: string }>,
+    res: ResponseFunction<IProduct | IProductError>,
     ctx: RestContext
   ) {
     try {
@@ -54,12 +62,12 @@ export class ProductController {
   }
 
   static deleteProduct(
-    req: RestRequest,
-    res: ResponseFunction,
+    req: RestRequest<IProduct, { id: string }>,
+    res: ResponseFunction<IProduct | IProductError>,
     ctx: RestContext
   ) {
     try {
-      const id = req.params["id"].toString();
+      const id = req.params.id;
       ProductService.deleteProduct(id);
 
       return res(ctx.status(200));
