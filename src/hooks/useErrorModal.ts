@@ -8,15 +8,17 @@ export const useErrorModal = (
 ) => {
   const { openModal, closeModal } = useModal();
 
+  const onCancel = useCallback(() => {
+    beforeClose();
+    closeModal();
+  }, [beforeClose, closeModal]);
+
   const openErrorModal = useCallback(() => {
     openModal("errorModal", {
       message: errorMessage!,
-      onCancel: () => {
-        beforeClose();
-        closeModal();
-      },
+      onCancel,
     });
-  }, [errorMessage, beforeClose, openModal, closeModal]);
+  }, [errorMessage, openModal, onCancel]);
 
   useEffect(() => {
     if (errorCondition) {
