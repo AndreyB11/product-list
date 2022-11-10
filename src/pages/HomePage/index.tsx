@@ -5,6 +5,18 @@ import { ProductsTable } from "components/UI/Tables/ProductsTable";
 import { useErrorModal } from "hooks/useErrorModal";
 import { useProduct } from "hooks/useProduct";
 import { useCallback, useEffect } from "react";
+import { Style } from "shared/theme";
+
+const homePageStyles: Style = {
+  container: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+  },
+  backdrop: {
+    zIndex: 100,
+  },
+};
 
 const HomePage = () => {
   const { products, isLoading, isError, error, cleanError, fetchProducts } =
@@ -19,15 +31,10 @@ const HomePage = () => {
 
   return (
     <PageLayout header={<Header />}>
-      <Box
-        sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
-      >
+      <Box sx={homePageStyles.container}>
         <ProductsTable products={products} />
 
-        <Backdrop
-          open={isLoading}
-          sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
-        >
+        <Backdrop open={isLoading} sx={homePageStyles.backdrop}>
           <CircularProgress size={128} />
         </Backdrop>
       </Box>

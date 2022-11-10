@@ -40,6 +40,9 @@ const deleteModalStyles: Style = {
     right: 4,
     top: 5,
   },
+  deleteBtn: {
+    mr: 3,
+  },
 };
 
 export const DeleteModal = ({ visible, onCancel, product }: IProps) => {
@@ -78,7 +81,7 @@ export const DeleteModal = ({ visible, onCancel, product }: IProps) => {
             variant="contained"
             color="error"
             onClick={handleDelete}
-            sx={{ mr: 3 }}
+            sx={deleteModalStyles.deleteBtn}
             data-testid="confirm-delete-button"
           >
             Delete
