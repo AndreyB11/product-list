@@ -77,6 +77,7 @@ export const ProductForm = ({ onSubmit, product }: IProps) => {
             name={name.name}
             onChange={handleChange}
             onBlur={handleBlur}
+            data-testid="product-name-field"
           />
           <InputField
             variant="filled"
@@ -89,6 +90,7 @@ export const ProductForm = ({ onSubmit, product }: IProps) => {
             name={price.name}
             onChange={handleChange}
             onBlur={handleBlur}
+            data-testid="product-price-field"
           />
           <InputField
             variant="filled"
@@ -101,12 +103,14 @@ export const ProductForm = ({ onSubmit, product }: IProps) => {
             name={brand.name}
             onChange={handleChange}
             onBlur={handleBlur}
+            data-testid="product-brand-field"
           />
           <Button
             disabled={isSubmitting}
             onClick={() => handleSubmit()}
             variant="contained"
             sx={productFormStyles.button}
+            data-testid="product-submit-button"
           >
             Submit
           </Button>

@@ -36,6 +36,7 @@ export const ProductsTable = ({ products }: IProps) => {
       columns={productTableColumns}
       data={products}
       keyExtractor={({ id }) => id}
+      data-testid="products-table"
       renderRow={(product) => (
         <>
           <TableCell>{product.id}</TableCell>
@@ -46,10 +47,16 @@ export const ProductsTable = ({ products }: IProps) => {
             <Avatar src={product.image} />
           </TableCell>
           <TableCell align="left">
-            <IconButton onClick={() => handleEditClick(product)}>
+            <IconButton
+              onClick={() => handleEditClick(product)}
+              data-testid="edit-product-button"
+            >
               <EditIcon color="primary" />
             </IconButton>
-            <IconButton onClick={() => handleDeleteClick(product)}>
+            <IconButton
+              onClick={() => handleDeleteClick(product)}
+              data-testid="delete-product-button"
+            >
               <DeleteIcon color="error" />
             </IconButton>
           </TableCell>
