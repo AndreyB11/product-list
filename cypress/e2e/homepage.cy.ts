@@ -18,12 +18,7 @@ describe("homepage spec", () => {
     cy.findByTestId("product-brand-field").type("Nike");
     cy.findByTestId("product-submit-button").click();
 
-    const editBtn = cy
-      .findByTestId("table")
-      .last()
-      .findByTestId("edit-product-button");
-
-    editBtn.click();
+    cy.findByTestId("table").last().findByTestId("edit-product-button").click();
     cy.findByTestId("product-name-field").type("test2");
     cy.findByTestId("product-price-field").type("1234");
     cy.findByTestId("product-brand-field").type("Puma");
