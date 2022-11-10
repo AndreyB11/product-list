@@ -1,5 +1,5 @@
 import { useModal } from "components/UI/Modals/GenericModal/GenericModalProvider";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 
 export const useErrorModal = (
   errorCondition: boolean,
@@ -8,16 +8,20 @@ export const useErrorModal = (
 ) => {
   const { openModal, closeModal } = useModal();
 
+  const openErrorModal = useCallback(() => {
+    openModal("errorModal", {
+      visible: true,
+      message: errorMessage!,
+      onCancel: () => {
+        beforeClose();
+        closeModal();
+      },
+    });
+  }, [errorMessage, beforeClose, openModal, closeModal]);
+
   useEffect(() => {
     if (errorCondition) {
-      openModal("errorModal", {
-        visible: true,
-        message: errorMessage!,
-        onCancel: () => {
-          beforeClose();
-          closeModal();
-        },
-      });
+      openErrorModal();
     }
-  }, [errorCondition, beforeClose, errorMessage, openModal, closeModal]);
+  }, [errorCondition, openErrorModal]);
 };
