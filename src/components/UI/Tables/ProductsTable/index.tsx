@@ -46,10 +46,16 @@ export const ProductsTable = ({ products }: IProps) => {
             <Avatar src={product.image} />
           </TableCell>
           <TableCell align="left">
-            <IconButton onClick={() => handleEditClick(product)}>
+            <IconButton
+              onClick={() => handleEditClick(product)}
+              data-testid="edit-product-button"
+            >
               <EditIcon color="primary" />
             </IconButton>
-            <IconButton onClick={() => handleDeleteClick(product)}>
+            <IconButton
+              onClick={() => handleDeleteClick(product)}
+              data-testid="delete-product-button"
+            >
               <DeleteIcon color="error" />
             </IconButton>
           </TableCell>

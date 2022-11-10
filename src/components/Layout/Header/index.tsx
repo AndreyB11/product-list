@@ -28,7 +28,11 @@ export const Header = () => {
       <Typography variant="h3" component="h1" color="white">
         Product List
       </Typography>
-      <IconButton size="large" onClick={handleOpenClick}>
+      <IconButton
+        size="large"
+        onClick={handleOpenClick}
+        data-testid="add-product-button"
+      >
         <AddIcon sx={globalStyles.whiteColor} />
       </IconButton>
     </Box>

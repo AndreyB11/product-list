@@ -27,7 +27,7 @@ export const GenericTable = <T extends object>({
   renderRow,
   keyExtractor,
 }: IProps<T>) => (
-  <TableContainer component={Paper} sx={{ maxWidth: "800px" }}>
+  <TableContainer component={Paper} data-testid="table">
     <Table>
       <TableHead>
         <TableRow>
