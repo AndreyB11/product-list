@@ -5,7 +5,7 @@ import { globalStyles } from "shared/theme";
 import { Style } from "shared/theme";
 
 interface IProps {
-  visible: boolean;
+  visible?: boolean;
   onCancel: () => void;
   message: string;
 }

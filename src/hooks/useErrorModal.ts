@@ -10,7 +10,6 @@ export const useErrorModal = (
 
   const openErrorModal = useCallback(() => {
     openModal("errorModal", {
-      visible: true,
       message: errorMessage!,
       onCancel: () => {
         beforeClose();
