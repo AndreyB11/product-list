@@ -1,22 +1,21 @@
+import { getAPIUrls } from "shared/constants";
 import { IProduct } from "shared/models";
+import API from "../API";
 
 export class ProductService {
-  static getAllProducts(): IProduct[] {
-    return [
-      {
-        id: "1",
-        name: "acd",
-        brand: "Adidas",
-        price: "123",
-        image:
-          "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
-      },
-    ];
+  static getAllProducts() {
+    return API.get<IProduct[]>(getAPIUrls().product.getAll);
   }
 
-  static addProduct(product: Omit<IProduct, "id">) {}
+  static addProduct(product: Omit<IProduct, "id">) {
+    return API.post<IProduct>(getAPIUrls().product.add, product);
+  }
 
-  static editProduct(product: IProduct) {}
+  static async editProduct(product: IProduct) {
+    return API.put<IProduct>(getAPIUrls(product.id).product.edit, product);
+  }
 
-  static deleteProduct(product: IProduct) {}
+  static async deleteProduct(product: IProduct) {
+    return API.delete(getAPIUrls(product.id).product.delete);
+  }
 }

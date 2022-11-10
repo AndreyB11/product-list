@@ -19,12 +19,15 @@ import {
   deleteProductSuccess,
 } from "../actions/products";
 import { PRODUCT_ACTIONS } from "../actionTypes/products";
+import { AxiosResponse } from "axios";
 
 function* fetchProductsWorker(): Generator {
   try {
     yield put(fetchProducts());
-    const data = yield call(ProductService.getAllProducts);
-    yield put(fetchProductsSuccess(data as IProduct[]));
+    const response = yield call(ProductService.getAllProducts);
+    yield put(
+      fetchProductsSuccess((response as AxiosResponse<IProduct[]>).data)
+    );
   } catch (err) {
     yield put(fetchProductsFailed("Could not fetch products"));
   }

@@ -3,10 +3,14 @@ import CloseIcon from "@mui/icons-material/Close";
 import { GenericModal } from "../GenericModal";
 import { Style } from "shared/theme";
 import { globalStyles } from "shared/theme";
+import { IProduct } from "shared/models";
+import { useProduct } from "hooks/useProduct";
+import { useCallback } from "react";
 
 interface IProps {
   visible?: boolean;
   onCancel: () => void;
+  product: IProduct;
 }
 
 const deleteModalStyles: Style = {
@@ -38,37 +42,52 @@ const deleteModalStyles: Style = {
   },
 };
 
-export const DeleteModal = ({ visible, onCancel }: IProps) => (
-  <GenericModal
-    visible={visible}
-    onCancel={onCancel}
-    modalStyles={deleteModalStyles.modal}
-  >
-    <Grid container sx={deleteModalStyles.innerContainer}>
-      <Grid item sx={deleteModalStyles.heading} xs={12}>
-        <Typography variant="h4" component="h5" color="white" fontWeight={500}>
-          Alert
-        </Typography>
-        <IconButton onClick={onCancel} sx={deleteModalStyles.icon}>
-          <CloseIcon sx={globalStyles.whiteColor} />
-        </IconButton>
+export const DeleteModal = ({ visible, onCancel, product }: IProps) => {
+  const { deleteProduct } = useProduct();
+
+  const handleDelete = useCallback(() => {
+    deleteProduct(product);
+    onCancel();
+  }, [deleteProduct, onCancel, product]);
+
+  return (
+    <GenericModal
+      visible={visible}
+      onCancel={onCancel}
+      modalStyles={deleteModalStyles.modal}
+    >
+      <Grid container sx={deleteModalStyles.innerContainer}>
+        <Grid item sx={deleteModalStyles.heading} xs={12}>
+          <Typography
+            variant="h4"
+            component="h5"
+            color="white"
+            fontWeight={500}
+          >
+            Alert
+          </Typography>
+          <IconButton onClick={onCancel} sx={deleteModalStyles.icon}>
+            <CloseIcon sx={globalStyles.whiteColor} />
+          </IconButton>
+        </Grid>
+        <Grid item xs={12} mt={1}>
+          <Typography>Are you sure you want to delete?</Typography>
+        </Grid>
+        <Grid item xs={12} mt={3}>
+          <Button
+            variant="contained"
+            color="error"
+            onClick={handleDelete}
+            sx={{ mr: 3 }}
+            data-testid="confirm-delete-button"
+          >
+            Delete
+          </Button>
+          <Button variant="contained" onClick={onCancel}>
+            Cancel
+          </Button>
+        </Grid>
       </Grid>
-      <Grid item xs={12} mt={1}>
-        <Typography>Are you sure you want to delete?</Typography>
-      </Grid>
-      <Grid item xs={12} mt={3}>
-        <Button
-          variant="contained"
-          color="error"
-          onClick={onCancel}
-          sx={{ mr: 3 }}
-        >
-          Delete
-        </Button>
-        <Button variant="contained" onClick={onCancel}>
-          Cancel
-        </Button>
-      </Grid>
-    </Grid>
-  </GenericModal>
-);
+    </GenericModal>
+  );
+};

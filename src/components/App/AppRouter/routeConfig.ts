@@ -13,8 +13,8 @@ export const RouteConfig: Record<AppRoutes, IRoute> = {
     path: RoutePath.Home,
     Component: HomePage,
   },
-  [AppRoutes.NotFound]: {
-    path: RoutePath.NotFound,
+  [AppRoutes.Any]: {
+    path: RoutePath.Any,
     Component: HomePage,
   },
 };

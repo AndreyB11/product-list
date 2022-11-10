@@ -14,9 +14,12 @@ interface IProps {
 export const ProductsTable = ({ products }: IProps) => {
   const { openModal } = useModal();
 
-  const handleDeleteClick = useCallback(() => {
-    openModal("deleteModal", {});
-  }, [openModal]);
+  const handleDeleteClick = useCallback(
+    (product: IProduct) => {
+      openModal("deleteModal", { product });
+    },
+    [openModal]
+  );
 
   const handleEditClick = useCallback(
     (product: IProduct) => {
@@ -43,10 +46,16 @@ export const ProductsTable = ({ products }: IProps) => {
             <Avatar src={product.image} />
           </TableCell>
           <TableCell align="left">
-            <IconButton onClick={() => handleEditClick(product)}>
+            <IconButton
+              onClick={() => handleEditClick(product)}
+              data-testid="edit-product-button"
+            >
               <EditIcon color="primary" />
             </IconButton>
-            <IconButton onClick={handleDeleteClick}>
+            <IconButton
+              onClick={() => handleDeleteClick(product)}
+              data-testid="delete-product-button"
+            >
               <DeleteIcon color="error" />
             </IconButton>
           </TableCell>
