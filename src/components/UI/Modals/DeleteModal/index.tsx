@@ -79,6 +79,7 @@ export const DeleteModal = ({ visible, onCancel, product }: IProps) => {
             color="error"
             onClick={handleDelete}
             sx={{ mr: 3 }}
+            data-testid="confirm-delete-button"
           >
             Delete
           </Button>

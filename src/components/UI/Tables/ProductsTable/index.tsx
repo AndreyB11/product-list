@@ -36,7 +36,6 @@ export const ProductsTable = ({ products }: IProps) => {
       columns={productTableColumns}
       data={products}
       keyExtractor={({ id }) => id}
-      data-testid="products-table"
       renderRow={(product) => (
         <>
           <TableCell>{product.id}</TableCell>

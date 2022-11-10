@@ -18,7 +18,12 @@ describe("homepage spec", () => {
     cy.get('[data-testid="product-brand-field"]').type("Nike");
     cy.get('[data-testid="product-submit-button"]').click();
 
-    cy.get('[data-testid="edit-product-button"]').click();
+    const editBtn = cy
+      .get('[data-testid="table"]')
+      .last()
+      .find('[data-testid="edit-product-button"]');
+
+    editBtn.click();
     cy.get('[data-testid="product-name-field"]').type("test2");
     cy.get('[data-testid="product-price-field"]').type("1234");
     cy.get('[data-testid="product-brand-field"]').type("Puma");
@@ -35,5 +40,6 @@ describe("homepage spec", () => {
     cy.get('[data-testid="product-submit-button"]').click();
 
     cy.get('[data-testid="delete-product-button"]').click();
+    cy.get('[data-testid="confirm-delete-button"]').click();
   });
 });
