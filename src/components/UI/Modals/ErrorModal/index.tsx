@@ -47,12 +47,7 @@ export const ErrorModal = ({ visible, onCancel, message }: IProps) => (
   >
     <Grid container sx={errorModalStyles.innerContainer}>
       <Grid item sx={errorModalStyles.heading} xs={12}>
-        <Typography
-          variant={"h4"}
-          component={"h5"}
-          color={"white"}
-          fontWeight={500}
-        >
+        <Typography variant="h4" component="h5" color="white" fontWeight={500}>
           Error
         </Typography>
         <IconButton onClick={onCancel} sx={errorModalStyles.icon}>
