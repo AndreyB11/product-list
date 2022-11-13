@@ -36,7 +36,7 @@ class ProductService {
     if (!product) throw new Error("Product not found");
 
     products.splice(
-      products.findIndex((p) => p.id !== id),
+      products.findIndex((p) => p.id === id),
       1
     );
 

@@ -3,7 +3,7 @@ import { Style } from "shared/theme";
 
 interface IProps {
   header: React.ReactNode;
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 const pageLayoutStyles: Style = {

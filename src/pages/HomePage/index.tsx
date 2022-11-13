@@ -1,11 +1,29 @@
+import { Backdrop, Box, CircularProgress } from "@mui/material";
 import { Header } from "components/Layout/Header";
 import { PageLayout } from "components/Layout/PageLayout";
 import { ProductsTable } from "components/UI/Tables/ProductsTable";
+import { useErrorModal } from "hooks/useErrorModal";
 import { useProduct } from "hooks/useProduct";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
+import { Style } from "shared/theme";
+
+const homePageStyles: Style = {
+  container: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+  },
+  backdrop: {
+    zIndex: 100,
+  },
+};
 
 const HomePage = () => {
-  const { products, fetchProducts } = useProduct();
+  const { products, isLoading, isError, error, cleanError, fetchProducts } =
+    useProduct();
+  const cleanAfterClose = useCallback(() => cleanError(), [cleanError]);
+
+  useErrorModal(isError, cleanAfterClose, error);
 
   useEffect(() => {
     fetchProducts();
@@ -13,7 +31,13 @@ const HomePage = () => {
 
   return (
     <PageLayout header={<Header />}>
-      <ProductsTable products={products} />
+      <Box sx={homePageStyles.container}>
+        <ProductsTable products={products} />
+
+        <Backdrop open={isLoading} sx={homePageStyles.backdrop}>
+          <CircularProgress size={128} />
+        </Backdrop>
+      </Box>
     </PageLayout>
   );
 };

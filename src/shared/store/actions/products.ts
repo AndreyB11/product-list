@@ -72,3 +72,7 @@ export const deleteProductFailed = (error: string) => ({
   type: PRODUCT_ACTIONS.DELETE_PRODUCT_FAILED as const,
   payload: error,
 });
+
+export const clearError = () => ({
+  type: PRODUCT_ACTIONS.CLEAR_ERROR as const,
+});

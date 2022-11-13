@@ -98,6 +98,12 @@ export const productReducer = (
         isError: true,
         error: action.payload,
       };
+    case PRODUCT_ACTIONS.CLEAR_ERROR:
+      return {
+        ...state,
+        isError: false,
+        error: ''
+      }
     default:
       return state;
   }

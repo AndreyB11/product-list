@@ -24,7 +24,7 @@ export const upsertModalStyles: Style = {
     transform: "translate(-50%, -50%)",
     bgcolor: "white",
     width: "350px",
-    height: "500px",
+    height: "450px",
     boxShadow: 24,
     outline: "none",
   },
