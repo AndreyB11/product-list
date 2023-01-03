@@ -1,17 +1,17 @@
-import { Backdrop, Box, CircularProgress } from "@mui/material";
-import { Header } from "components/Layout/Header";
-import { PageLayout } from "components/Layout/PageLayout";
-import { ProductsTable } from "components/UI/Tables/ProductsTable";
-import { useErrorModal } from "hooks/useErrorModal";
-import { useProduct } from "hooks/useProduct";
-import { useCallback, useEffect } from "react";
-import { Style } from "shared/theme";
+import { Backdrop, Box, CircularProgress, Typography } from '@mui/material';
+import { Header } from 'components/Layout/Header';
+import { PageLayout } from 'components/Layout/PageLayout';
+import { ProductsTable } from 'components/UI/Tables/ProductsTable';
+import { useErrorModal } from 'hooks/useErrorModal';
+import { useProduct } from 'hooks/useProduct';
+import { useCallback, useEffect } from 'react';
+import { Style } from 'shared/theme';
 
 const homePageStyles: Style = {
   container: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
   },
   backdrop: {
     zIndex: 100,
@@ -31,6 +31,7 @@ const HomePage = () => {
 
   return (
     <PageLayout header={<Header />}>
+      <Typography>{`Total Proudcts: ${products.length}`}</Typography>
       <Box sx={homePageStyles.container}>
         <ProductsTable products={products} />
 
