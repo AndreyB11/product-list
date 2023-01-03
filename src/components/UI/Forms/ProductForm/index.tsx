@@ -1,16 +1,16 @@
-import { Button } from "@mui/material";
-import { Box } from "@mui/system";
-import { InputField } from "components/UI/FormFields/InputField";
-import { Formik, FormikHelpers, FormikValues } from "formik";
-import { IProduct } from "shared/models";
+import { Button } from '@mui/material';
+import { Box } from '@mui/system';
+import { InputField } from 'components/UI/FormFields/InputField';
+import { Formik, FormikHelpers, FormikValues } from 'formik';
+import { IProduct } from 'shared/models';
 import {
   formModel,
   initFromProduct,
   initialValues,
   productValidationSchema,
-} from "./validation";
-import { Style } from "shared/theme";
-import { useCallback } from "react";
+} from './validation';
+import { Style } from 'shared/theme';
+import { useCallback } from 'react';
 
 interface IProps {
   onSubmit: (
@@ -22,17 +22,17 @@ interface IProps {
 
 export const productFormStyles: Style = {
   container: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    m: 2,
+    display: 'inline',
+    flexDirection: 'column',
+    alignItems: 'center',
+    m: 1.5,
   },
   field: {
-    backgroundColor: "white",
+    backgroundColor: 'white',
     mt: 1,
   },
   button: {
-    mt: 1,
+    mt: 1.5,
     px: 2,
     py: 1,
   },
