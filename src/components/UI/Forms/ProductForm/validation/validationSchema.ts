@@ -19,6 +19,7 @@ export const productValidationSchema = {
       .number()
       .required(price.requiredError)
       .positive(price.positiveError)
+      .min(5)
       .integer(price.numberError),
   }),
 };
