@@ -1,11 +1,11 @@
-import { Avatar, IconButton, TableCell } from "@mui/material";
-import EditIcon from "@mui/icons-material/Edit";
-import DeleteIcon from "@mui/icons-material/Delete";
-import { IProduct } from "shared/models";
-import { useModal } from "components/UI/Modals/GenericModal/GenericModalProvider";
-import { GenericTable } from "../GenericTable";
-import { productTableColumns } from "./productTableColumns";
-import { useCallback } from "react";
+import { Avatar, IconButton, TableCell, Typography } from '@mui/material';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
+import { IProduct } from 'shared/models';
+import { useModal } from 'components/UI/Modals/GenericModal/GenericModalProvider';
+import { GenericTable } from '../GenericTable';
+import { productTableColumns } from './productTableColumns';
+import { useCallback } from 'react';
 
 interface IProps {
   products: IProduct[];
@@ -16,15 +16,15 @@ export const ProductsTable = ({ products }: IProps) => {
 
   const handleDeleteClick = useCallback(
     (product: IProduct) => {
-      openModal("deleteModal", { product });
+      openModal('deleteModal', { product });
     },
     [openModal]
   );
 
   const handleEditClick = useCallback(
     (product: IProduct) => {
-      openModal("upsertModal", {
-        title: "Edit Product",
+      openModal('upsertModal', {
+        title: 'Edit Product',
         product,
       });
     },
@@ -40,7 +40,9 @@ export const ProductsTable = ({ products }: IProps) => {
         <>
           <TableCell>{product.id}</TableCell>
           <TableCell>{product.name}</TableCell>
-          <TableCell>{product.brand}</TableCell>
+          <TableCell>
+            <Typography color="GrayText">{product.brand}</Typography>
+          </TableCell>
           <TableCell>{product.price}</TableCell>
           <TableCell>
             <Avatar src={product.image} />
