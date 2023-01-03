@@ -45,7 +45,7 @@ export const ProductsTable = ({ products }: IProps) => {
           </TableCell>
           <TableCell>{product.name}</TableCell>
           <TableCell>
-            <Typography color="GrayText">{product.brand}</Typography>
+            <Typography color="coral">{product.brand}</Typography>
           </TableCell>
           <TableCell>
             <Typography color="blue">{product.price}$</Typography>
