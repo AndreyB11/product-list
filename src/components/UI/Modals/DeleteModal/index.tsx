@@ -22,7 +22,7 @@ const deleteModalStyles: Style = {
     bgcolor: 'white',
     width: '350px',
     height: '220px',
-    boxShadow: 24,
+    boxShadow: 20,
     outline: 'none',
   },
   innerContainer: {
@@ -31,7 +31,7 @@ const deleteModalStyles: Style = {
     flexDirection: 'column',
   },
   heading: {
-    backgroundColor: '#191a19',
+    backgroundColor: 'silver',
     py: 2,
     mb: 2,
   },
