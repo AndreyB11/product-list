@@ -31,7 +31,7 @@ const HomePage = () => {
 
   return (
     <PageLayout header={<Header />}>
-      <Typography>{`Total Proudcts: ${products.length}`}</Typography>
+      <Typography>{`Total Proudcts number: ${products.length}`}</Typography>
       <Box sx={homePageStyles.container}>
         <ProductsTable products={products} />
 
