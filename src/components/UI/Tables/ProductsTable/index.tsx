@@ -38,7 +38,11 @@ export const ProductsTable = ({ products }: IProps) => {
       keyExtractor={({ id }) => id}
       renderRow={(product) => (
         <>
-          <TableCell>{product.id}</TableCell>
+          <TableCell>
+            <Typography sx={{ textDecoration: 'underline' }}>
+              {product.id}
+            </Typography>
+          </TableCell>
           <TableCell>{product.name}</TableCell>
           <TableCell>
             <Typography color="GrayText">{product.brand}</Typography>
