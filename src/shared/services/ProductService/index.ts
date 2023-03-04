@@ -12,7 +12,11 @@ export class ProductService {
   }
 
   static async editProduct(product: IProduct) {
-    return API.put<IProduct>(getAPIUrls(product.id).product.edit, product);
+    const req: any = { ...product };
+
+    delete req?.id;
+
+    return API.put<IProduct>(getAPIUrls(product.id).product.edit, req);
   }
 
   static async deleteProduct(product: IProduct) {

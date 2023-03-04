@@ -38,6 +38,7 @@ function* addProductWorker(
 ): Generator {
   try {
     yield put(addProduct());
+    console.log(action);
     yield call(ProductService.addProduct, action.payload);
     yield put(addProductSuccess());
     yield call(fetchProductsWorker);

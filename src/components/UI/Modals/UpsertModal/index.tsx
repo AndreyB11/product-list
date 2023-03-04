@@ -45,6 +45,13 @@ export const upsertModalStyles: Style = {
   },
 };
 
+export const productImages: Record<string, string> = {
+  adidas:
+    "https://1000logos.net/wp-content/uploads/2019/06/Adidas-Logo-1991.jpg",
+  nike: "https://static.nike.com/a/images/f_jpg,q_auto:eco/61b4738b-e1e1-4786-8f6c-26aa0008e80b/swoosh-logo-black.png",
+  puma: "https://1000logos.net/wp-content/uploads/2017/05/PUMA-logo.jpg",
+};
+
 export const UpsertModal = ({ visible, onCancel, title, product }: IProps) => {
   const { editProduct, addProduct } = useProduct();
 
@@ -52,19 +59,20 @@ export const UpsertModal = ({ visible, onCancel, title, product }: IProps) => {
     (values: FormikValues, actions: FormikHelpers<FormikValues>) => {
       actions.setTouched({});
       actions.setSubmitting(true);
+      const image = productImages[(values.brand as string).toLowerCase()];
 
       if (product) {
         editProduct({
           id: product.id,
           brand: values.brand,
-          image: product.image,
+          image,
           name: values.name,
           price: values.price,
         });
       } else {
         addProduct({
           brand: values.brand,
-          image: "",
+          image,
           name: values.name,
           price: values.price,
         });

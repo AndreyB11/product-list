@@ -1,11 +1,11 @@
-import { Button, Grid, IconButton, Typography } from '@mui/material';
-import CloseIcon from '@mui/icons-material/Close';
-import { GenericModal } from '../GenericModal';
-import { Style } from 'shared/theme';
-import { globalStyles } from 'shared/theme';
-import { IProduct } from 'shared/models';
-import { useProduct } from 'hooks/useProduct';
-import { useCallback } from 'react';
+import { Button, Grid, IconButton, Typography } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
+import { GenericModal } from "../GenericModal";
+import { Style } from "shared/theme";
+import { globalStyles } from "shared/theme";
+import { IProduct } from "shared/models";
+import { useProduct } from "hooks/useProduct";
+import { useCallback } from "react";
 
 interface IProps {
   visible?: boolean;
@@ -15,28 +15,28 @@ interface IProps {
 
 const deleteModalStyles: Style = {
   modal: {
-    position: 'absolute',
-    top: '45%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    bgcolor: 'white',
-    width: '350px',
-    height: '220px',
-    boxShadow: 20,
-    outline: 'none',
+    position: "absolute",
+    top: "45%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    bgcolor: "white",
+    width: "300px",
+    height: "200px",
+    boxShadow: 24,
+    outline: "none",
   },
   innerContainer: {
-    textAlign: 'center',
-    display: 'flex',
-    flexDirection: 'column',
+    textAlign: "center",
+    display: "flex",
+    flexDirection: "column",
   },
   heading: {
-    backgroundColor: 'silver',
+    backgroundColor: "#191a19",
     py: 2,
     mb: 2,
   },
   icon: {
-    position: 'absolute',
+    position: "absolute",
     right: 4,
     top: 5,
   },

@@ -24,5 +24,5 @@ export const useErrorModal = (
     if (errorCondition) {
       openErrorModal();
     }
-  }, [errorCondition, openErrorModal]);
+  }, [errorCondition]);
 };

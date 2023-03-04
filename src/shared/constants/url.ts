@@ -10,9 +10,9 @@ export const RoutePath: Record<AppRoutes, string> = {
 
 export const getAPIUrls = (id?: string) => ({
   product: {
-    getAll: "/products",
-    add: "/products",
-    edit: `/products/${id}`,
-    delete: `/products/${id}`,
+    getAll: "/items",
+    add: "/items",
+    edit: `/items/${id}`,
+    delete: `/items/${id}`,
   },
 });
